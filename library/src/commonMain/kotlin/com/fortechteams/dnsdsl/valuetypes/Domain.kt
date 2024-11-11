@@ -1,4 +1,4 @@
-package com.fortechteams.dnsdsl
+package com.fortechteams.dnsdsl.valuetypes
 
 import kotlin.jvm.JvmInline
 
@@ -17,7 +17,7 @@ value class Domain private constructor(val value: String) {
   fun parentDomains(): List<Domain> {
     val parts = value.split('.')
     return (1..parts.lastIndex).map { i ->
-      Domain.unsafe(parts.drop(i).joinToString("."))
+      unsafe(parts.drop(i).joinToString("."))
     }
   }
 

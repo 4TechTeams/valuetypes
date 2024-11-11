@@ -1,5 +1,6 @@
 package com.fortechteams.dnsdsl
 
+import com.fortechteams.dnsdsl.valuetypes.Domain
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
