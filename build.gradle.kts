@@ -7,6 +7,7 @@ buildscript {
   }
 
   allprojects {
+    group = "com.fortechteams.valuetypes"
     version = rootProject
       .file("version.txt")
       .readText()

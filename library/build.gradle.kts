@@ -1,12 +1,6 @@
 plugins {
   id("convention.multiplatform")
-  id("convention.docs")
-  id("convention.maven-publish")
-  id("convention.code-quality")
 }
-
-group = "io.github.kotlin"
-version = "1.0.0"
 
 kotlin {
   jvm()

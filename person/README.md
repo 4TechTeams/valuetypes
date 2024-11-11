@@ -8,22 +8,22 @@ Provides specific value types for personal data & attributes like names, birth-d
 
 ```kotlin
 dependencies {
-  implementation("com.fortechteams:valuetypes-person:VERSION")
+  implementation("com.fortechteams.valuetypes:person:VERSION")
 }
 ```
 
 **Gradle Groovy DSL:**
 
 ```groovy
-implementation group: 'com.fortechteams', name: 'valuetypes-person', version: 'VERSION'
+implementation group: 'com.fortechteams.valuetypes', name: 'person', version: 'VERSION'
 ```
 
 **Maven:**
 
 ```xml
 <dependency>
-    <groupId>com.fortechteams</groupId>
-    <artifactId>valuetypes-person</artifactId>
+    <groupId>com.fortechteams.valuetypes</groupId>
+    <artifactId>person</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
