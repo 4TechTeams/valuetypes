@@ -1,11 +1,8 @@
-import com.vanniktech.maven.publish.SonatypeHost
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-  alias(libs.plugins.kotlinMultiplatform)
-  alias(libs.plugins.vanniktech.mavenPublish)
-  alias(libs.plugins.kotest.multiplatform)
+  id("convention.multiplatform")
+  id("convention.docs")
+  id("convention.maven-publish")
+  id("convention.code-quality")
 }
 
 group = "io.github.kotlin"
@@ -18,7 +15,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        //put your multiplatform dependencies here
+        // put your multiplatform dependencies here
       }
     }
     val commonTest by getting {
