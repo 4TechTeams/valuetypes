@@ -10,7 +10,7 @@ import kotlin.jvm.JvmInline
  * This implementation provides a memory-efficient way to handle IPv4 addresses while
  * ensuring type safety and offering convenient conversion methods.
  *
- * Example usage:
+ * ## Example
  *
  * ```kotlin
  * import com.fortechteams.valuetypes.network.IPv4Address
@@ -39,6 +39,8 @@ import kotlin.jvm.JvmInline
  * <!--- KNIT example-IPv4Address-01.kt -->
  * <!--- TEST lines.isEmpty() -->
  *
+ * ## See Also
+ *
  * The class provides several factory methods for creating IPv4 addresses:
  * - [fromString] for parsing string representations
  * - [fromOctets] for creating from individual octets
@@ -57,90 +59,103 @@ value class IPv4Address private constructor(private val value: UInt) {
   /**
    * The first octet of the IP address (most significant byte).
    *
-   * Example:
    * ```kotlin
-   * @Test
-   * fun octet1_example() {
-   *   val addr = IPv4Address.fromString("192.168.1.1").getOrNull()!!
-   *   assertEquals(192.toUByte(), addr.octet1)
+   * import com.fortechteams.valuetypes.network.IPv4Address
+   * import io.kotest.matchers.shouldBe
+   *
+   * fun test() {
+   *   val addr = IPv4Address.fromString("192.168.1.1").getOrThrow()
+   *   addr.octet1 shouldBe 192u.toUByte()
    * }
    * ```
+   * <!--- KNIT example-IPv4Address-02.kt -->
+   * <!--- TEST lines.isEmpty() -->
    */
   val octet1: UByte get() = ((value shr 24) and 0xFFu).toUByte()
 
   /**
    * The second octet of the IP address.
    *
-   * Example:
    * ```kotlin
-   * @Test
-   * fun octet2_example() {
-   *   val addr = IPv4Address.fromString("192.168.1.1").getOrNull()!!
-   *   assertEquals(168.toUByte(), addr.octet2)
+   * import com.fortechteams.valuetypes.network.IPv4Address
+   * import io.kotest.matchers.shouldBe
+   *
+   * fun test() {
+   *   val addr = IPv4Address.fromString("192.168.1.1").getOrThrow()
+   *   addr.octet2 shouldBe 168u.toUByte()
    * }
    * ```
+   * <!--- KNIT example-IPv4Address-03.kt -->
+   * <!--- TEST lines.isEmpty() -->
    */
   val octet2: UByte get() = ((value shr 16) and 0xFFu).toUByte()
 
   /**
    * The third octet of the IP address.
    *
-   * Example:
    * ```kotlin
-   * @Test
-   * fun octet3_example() {
-   *   val addr = IPv4Address.fromString("192.168.1.1").getOrNull()!!
-   *   assertEquals(1.toUByte(), addr.octet3)
+   * import com.fortechteams.valuetypes.network.IPv4Address
+   * import io.kotest.matchers.shouldBe
+   *
+   * fun test() {
+   *   val addr = IPv4Address.fromString("192.168.1.1").getOrThrow()
+   *   addr.octet3 shouldBe 1u.toUByte()
    * }
    * ```
+   * <!--- KNIT example-IPv4Address-04.kt -->
+   * <!--- TEST lines.isEmpty() -->
    */
   val octet3: UByte get() = ((value shr 8) and 0xFFu).toUByte()
 
   /**
    * The fourth octet of the IP address (least significant byte).
    *
-   * Example:
    * ```kotlin
-   * @Test
-   * fun octet4_example() {
-   *   val addr = IPv4Address.fromString("192.168.1.1").getOrNull()!!
-   *   assertEquals(1.toUByte(), addr.octet4)
+   * import com.fortechteams.valuetypes.network.IPv4Address
+   * import io.kotest.matchers.shouldBe
+   *
+   * fun test() {
+   *   val addr = IPv4Address.fromString("192.168.1.1").getOrThrow()
+   *   addr.octet4 shouldBe 1u.toUByte()
    * }
    * ```
+   * <!--- KNIT example-IPv4Address-05.kt -->
+   * <!--- TEST lines.isEmpty() -->
    */
   val octet4: UByte get() = (value and 0xFFu).toUByte()
 
   /**
    * Returns the string representation of the IP address in dotted decimal notation.
    *
-   * Example:
    * ```kotlin
-   * @Test
-   * fun toString_example() {
-   *   val addr = IPv4Address.fromString("192.168.1.1").getOrNull()!!
-   *   assertEquals("192.168.1.1", addr.toString())
+   * import com.fortechteams.valuetypes.network.IPv4Address
+   * import io.kotest.matchers.shouldBe
+   *
+   * fun test() {
+   *   val addr = IPv4Address.fromString("192.168.1.1").getOrThrow()
+   *   addr.toString() shouldBe "192.168.1.1"
    * }
    * ```
-   *
-   * @return The IP address in format "xxx.xxx.xxx.xxx"
+   * <!--- KNIT example-IPv4Address-06.kt -->
+   * <!--- TEST lines.isEmpty() -->
    */
-  override fun toString(): String =
-    "$octet1.$octet2.$octet3.$octet4"
+  override fun toString(): String = "$octet1.$octet2.$octet3.$octet4"
 
   /**
    * Returns the unsigned 32-bit integer representation of the IP address.
    *
-   * Example:
    * ```kotlin
-   * @Test
-   * fun toUInt_example() {
-   *   val addr = IPv4Address.fromString("192.168.1.1").getOrNull()!!
+   * import com.fortechteams.valuetypes.network.IPv4Address
+   * import io.kotest.matchers.shouldBe
+   *
+   * fun test() {
+   *   val addr = IPv4Address.fromString("192.168.1.1").getOrThrow()
    *   val expected = (192u shl 24) or (168u shl 16) or (1u shl 8) or 1u
-   *   assertEquals(expected, addr.toUInt())
+   *   addr.toUInt() shouldBe expected
    * }
    * ```
-   *
-   * @return The IP address as an unsigned 32-bit integer
+   * <!--- KNIT example-IPv4Address-07.kt -->
+   * <!--- TEST lines.isEmpty() -->
    */
   fun toUInt(): UInt = value
 
@@ -153,10 +168,11 @@ value class IPv4Address private constructor(private val value: UInt) {
    * - 192.168.0.0 to 192.168.255.255 (Class C)
    * - 127.0.0.0 to 127.255.255.255 (Loopback)
    *
-   * Example:
    * ```kotlin
-   * @Test
-   * fun isPrivate_example() {
+   * import com.fortechteams.valuetypes.network.IPv4Address
+   * import io.kotest.matchers.shouldBe
+   *
+   * fun test() {
    *   val examples = mapOf(
    *     "10.0.0.1" to true,
    *     "172.16.0.1" to true,
@@ -167,13 +183,13 @@ value class IPv4Address private constructor(private val value: UInt) {
    *   )
    *
    *   examples.forEach { (ip, expectedPrivate) ->
-   *     val addr = IPv4Address.fromString(ip).getOrNull()!!
-   *     assertEquals(expectedPrivate, addr.isPrivate())
+   *     val addr = IPv4Address.fromString(ip).getOrThrow()
+   *     addr.isPrivate() shouldBe expectedPrivate
    *   }
    * }
    * ```
-   *
-   * @return true if the IP address is in a private range, false otherwise
+   * <!--- KNIT example-IPv4Address-08.kt -->
+   * <!--- TEST lines.isEmpty() -->
    */
   fun isPrivate(): Boolean = when {
     // Class A private network (10.0.0.0 to 10.255.255.255)
@@ -201,10 +217,12 @@ value class IPv4Address private constructor(private val value: UInt) {
    * - Class D: 224-239 (Multicast)
    * - Class E: 240-255 (Reserved)
    *
-   * Example:
    * ```kotlin
-   * @Test
-   * fun networkClass_example() {
+   * import com.fortechteams.valuetypes.network.IPv4Address
+   * import com.fortechteams.valuetypes.network.NetworkClass
+   * import io.kotest.matchers.shouldBe
+   *
+   * fun test() {
    *   val examples = mapOf(
    *     "10.0.0.1" to NetworkClass.A,
    *     "172.16.0.1" to NetworkClass.B,
@@ -214,13 +232,13 @@ value class IPv4Address private constructor(private val value: UInt) {
    *   )
    *
    *   examples.forEach { (ip, expectedClass) ->
-   *     val addr = IPv4Address.fromString(ip).getOrNull()!!
-   *     assertEquals(expectedClass, addr.networkClass())
+   *     val addr = IPv4Address.fromString(ip).getOrThrow()
+   *     addr.networkClass() shouldBe expectedClass
    *   }
    * }
    * ```
-   *
-   * @return The [NetworkClass] of this IP address
+   * <!--- KNIT example-IPv4Address-09.kt -->
+   * <!--- TEST lines.isEmpty() -->
    */
   fun networkClass(): NetworkClass = when (octet1.toInt()) {
     in 0..127 -> NetworkClass.A
@@ -234,26 +252,21 @@ value class IPv4Address private constructor(private val value: UInt) {
     /**
      * Creates an [IPv4Address] from a string in dotted decimal notation.
      *
-     * Example:
      * ```kotlin
-     * @Test
-     * fun fromString_example() {
+     * import com.fortechteams.valuetypes.network.IPv4Address
+     * import io.kotest.matchers.shouldBe
+     *
+     * fun test() {
      *   // Successful parsing
-     *   val valid = IPv4Address.fromString("192.168.1.1")
-     *   assert(valid.isSuccess)
+     *   IPv4Address.fromString("192.168.1.1").isSuccess shouldBe true
      *
      *   // Invalid formats
-     *   val invalidFormat = IPv4Address.fromString("192.168.1")
-     *   assert(invalidFormat.isFailure)
-     *
-     *   val invalidOctet = IPv4Address.fromString("192.168.1.256")
-     *   assert(invalidOctet.isFailure)
+     *   IPv4Address.fromString("192.168.1").isFailure shouldBe true
+     *   IPv4Address.fromString("192.168.1.256").isFailure shouldBe true
      * }
      * ```
-     *
-     * @param ip The IP address string in format "xxx.xxx.xxx.xxx"
-     * @return A [Result] containing the [IPv4Address] if parsing was successful,
-     *         or a failure with [IllegalArgumentException] if the format is invalid
+     * <!--- KNIT example-IPv4Address-10.kt -->
+     * <!--- TEST lines.isEmpty() -->
      */
     fun fromString(ip: String): Result<IPv4Address> =
       ip
@@ -271,26 +284,20 @@ value class IPv4Address private constructor(private val value: UInt) {
     /**
      * Creates an [IPv4Address] from four integer octets.
      *
-     * Example:
      * ```kotlin
-     * @Test
-     * fun fromOctets_example() {
+     * import com.fortechteams.valuetypes.network.IPv4Address
+     * import io.kotest.matchers.shouldBe
+     *
+     * fun test() {
      *   // Valid octets
-     *   val valid = IPv4Address.fromOctets(192, 168, 1, 1)
-     *   assert(valid.isSuccess)
+     *   IPv4Address.fromOctets(192, 168, 1, 1).isSuccess shouldBe true
      *
      *   // Invalid octet values
-     *   val invalid = IPv4Address.fromOctets(192, 168, 1, 256)
-     *   assert(invalid.isFailure)
+     *   IPv4Address.fromOctets(192, 168, 1, 256).isFailure shouldBe true
      * }
      * ```
-     *
-     * @param a First octet (0-255)
-     * @param b Second octet (0-255)
-     * @param c Third octet (0-255)
-     * @param d Fourth octet (0-255)
-     * @return A [Result] containing the [IPv4Address] if all octets are valid,
-     *         or a failure with [IllegalArgumentException] if any octet is out of range
+     * <!--- KNIT example-IPv4Address-11.kt -->
+     * <!--- TEST lines.isEmpty() -->
      */
     fun fromOctets(a: Int, b: Int, c: Int, d: Int): Result<IPv4Address> = runCatching {
       if (listOf(a, b, c, d).any { it !in 0..255 }) {
@@ -308,26 +315,23 @@ value class IPv4Address private constructor(private val value: UInt) {
     /**
      * Creates an [IPv4Address] from four unsigned byte octets.
      *
-     * Example:
      * ```kotlin
-     * @Test
-     * fun fromUByteOctets_example() {
+     * import com.fortechteams.valuetypes.network.IPv4Address
+     * import io.kotest.matchers.shouldBe
+     *
+     * fun test() {
      *   val addr = IPv4Address.fromOctets(
      *     192.toUByte(),
      *     168.toUByte(),
      *     1.toUByte(),
      *     1.toUByte()
      *   )
-     *   assert(addr.isSuccess)
-     *   assertEquals("192.168.1.1", addr.getOrNull()!!.toString())
+     *   addr.isSuccess shouldBe true
+     *   addr.getOrThrow().toString() shouldBe "192.168.1.1"
      * }
      * ```
-     *
-     * @param a First octet
-     * @param b Second octet
-     * @param c Third octet
-     * @param d Fourth octet
-     * @return A [Result] containing the [IPv4Address]
+     * <!--- KNIT example-IPv4Address-12.kt -->
+     * <!--- TEST lines.isEmpty() -->
      */
     fun fromOctets(a: UByte, b: UByte, c: UByte, d: UByte): Result<IPv4Address> =
       fromOctets(a.toInt(), b.toInt(), c.toInt(), d.toInt())
@@ -335,19 +339,19 @@ value class IPv4Address private constructor(private val value: UInt) {
     /**
      * Creates an [IPv4Address] from an unsigned 32-bit integer.
      *
-     * Example:
      * ```kotlin
-     * @Test
-     * fun fromUInt_example() {
+     * import com.fortechteams.valuetypes.network.IPv4Address
+     * import io.kotest.matchers.shouldBe
+     *
+     * fun test() {
      *   val value = (192u shl 24) or (168u shl 16) or (1u shl 8) or 1u
      *   val addr = IPv4Address.fromUInt(value)
-     *   assert(addr.isSuccess)
-     *   assertEquals("192.168.1.1", addr.getOrNull()!!.toString())
+     *   addr.isSuccess shouldBe true
+     *   addr.getOrThrow().toString() shouldBe "192.168.1.1"
      * }
      * ```
-     *
-     * @param value The unsigned 32-bit integer representation of the IP address
-     * @return A [Result] containing the [IPv4Address]
+     * <!--- KNIT example-IPv4Address-13.kt -->
+     * <!--- TEST lines.isEmpty() -->
      */
     fun fromUInt(value: UInt): Result<IPv4Address> =
       Result.success(IPv4Address(value))
