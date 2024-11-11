@@ -1,7 +1,8 @@
 package com.fortechteams.valuetypes.person
 
-import com.fortechteams.valuetypes.network.exception.InvalidNameException
-import com.fortechteams.valuetypes.person.NameValidator.validateName
+import com.fortechteams.valuetypes.person.FirstName.Companion.MAX_LENGTH
+import com.fortechteams.valuetypes.person.LastName.Companion.MAX_LENGTH
+import com.fortechteams.valuetypes.person.exception.InvalidNameException
 
 /**
  * Represents any name of a natural person
@@ -12,57 +13,6 @@ import com.fortechteams.valuetypes.person.NameValidator.validateName
  */
 sealed interface Name {
   val value: String
-}
-
-/**
- * Provides validation capabilities specifically for personal names
- */
-object NameValidator {
-
-  /**
-   * Checks if a character is printable.
-   *
-   * @return true if the character is printable, false otherwise
-   */
-  fun Char.isPrintable(): Boolean =
-    this.isWhitespace() || this.category.let { category ->
-      category != CharCategory.CONTROL &&
-        category != CharCategory.FORMAT &&
-        category != CharCategory.PRIVATE_USE &&
-        category != CharCategory.SURROGATE &&
-        category != CharCategory.UNASSIGNED
-    }
-
-  /**
-   * Validates a name string according to common rules.
-   *
-   * @param value The string to validate
-   * @param maxLength The maximum allowed length
-   * @param fieldName The name of the field for error messages
-   * @return A [Result] containing either the validated string or a failure with [InvalidNameException]
-   */
-  fun validateName(value: String, maxLength: Int): Result<String> {
-    val trimmed = value.trim()
-    return when {
-      trimmed.isBlank() -> Result.failure(
-        InvalidNameException(value, "Cannot be blank")
-      )
-
-      trimmed.length > maxLength -> Result.failure(
-        InvalidNameException(value, "Cannot exceed $maxLength characters")
-      )
-
-      trimmed.any { it.isDigit() } -> Result.failure(
-        InvalidNameException(value, "Cannot contain numbers")
-      )
-
-      trimmed.any { !it.isPrintable() } -> Result.failure(
-        InvalidNameException(value, "Can only contain printable characters")
-      )
-
-      else -> Result.success(trimmed)
-    }
-  }
 }
 
 /**
@@ -236,4 +186,35 @@ value class LastName private constructor(
   }
 
   override fun toString(): String = value
+}
+
+/**
+ * Validates a name string according to common rules.
+ *
+ * @param value The string to validate
+ * @param maxLength The maximum allowed length
+ * @param fieldName The name of the field for error messages
+ * @return A [Result] containing either the validated string or a failure with [InvalidNameException]
+ */
+private fun validateName(value: String, maxLength: Int): Result<String> {
+  val trimmed = value.trim()
+  return when {
+    trimmed.isBlank() -> Result.failure(
+      InvalidNameException(value, "Cannot be blank")
+    )
+
+    trimmed.length > maxLength -> Result.failure(
+      InvalidNameException(value, "Cannot exceed $maxLength characters")
+    )
+
+    trimmed.any { it.isDigit() } -> Result.failure(
+      InvalidNameException(value, "Cannot contain numbers")
+    )
+
+    trimmed.any { !it.isPrintable() } -> Result.failure(
+      InvalidNameException(value, "Can only contain printable characters")
+    )
+
+    else -> Result.success(trimmed)
+  }
 }

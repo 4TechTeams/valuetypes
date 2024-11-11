@@ -5,5 +5,7 @@ module:network
 com.fortechteams.valuetypes.network
 com.fortechteams.valuetypes.network.exception
 module:person
-com.fortechteams.valuetypes.network.exception
 com.fortechteams.valuetypes.person
+com.fortechteams.valuetypes.person.exception
+com.fortechteams.valuetypes.person.switzerland
+com.fortechteams.valuetypes.person.usa

@@ -1,6 +1,6 @@
-# Module network
+# Module person
 
-Provides specific value types for personal data &attributes like names, birth-date, etc.
+Provides specific value types for personal data & attributes like names, birth-date, etc.
 
 ## Usage
 
@@ -8,14 +8,14 @@ Provides specific value types for personal data &attributes like names, birth-da
 
 ```kotlin
 dependencies {
-  implementation("com.fortechteams:valuetypes-personal:VERSION")
+  implementation("com.fortechteams:valuetypes-person:VERSION")
 }
 ```
 
 **Gradle Groovy DSL:**
 
 ```groovy
-implementation group: 'com.fortechteams', name: 'valuetypes-personal', version: 'VERSION'
+implementation group: 'com.fortechteams', name: 'valuetypes-person', version: 'VERSION'
 ```
 
 **Maven:**
@@ -23,7 +23,23 @@ implementation group: 'com.fortechteams', name: 'valuetypes-personal', version: 
 ```xml
 <dependency>
     <groupId>com.fortechteams</groupId>
-    <artifactId>valuetypes-personal</artifactId>
+    <artifactId>valuetypes-person</artifactId>
     <version>VERSION</version>
 </dependency>
 ```
+
+# Package com.fortechteams.valuetypes.person
+
+Generic personal value types like `FirstName` / `LastName`, `BirthDate`, etc.
+
+# Package com.fortechteams.valuetypes.person.exception
+
+Value type specific exceptions, majorly used for validation
+
+# Package com.fortechteams.valuetypes.person.switzerland
+
+Country-specific personal types for **Switzerland**, e.g. the `SwissSocialSecurityNumber` a.k.a. AHV-Number
+
+# Package com.fortechteams.valuetypes.person.usa
+
+Country-specific personal types for the **United States of America (USA)**, e.g. the `AmericanSocialSecurityNumber`

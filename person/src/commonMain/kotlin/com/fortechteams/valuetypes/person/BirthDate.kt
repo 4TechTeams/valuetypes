@@ -1,9 +1,9 @@
 package com.fortechteams.valuetypes.person
 
-import com.fortechteams.valuetypes.network.exception.InvalidBirthDateException
 import com.fortechteams.valuetypes.person.BirthDate.Companion.fromDate
 import com.fortechteams.valuetypes.person.BirthDate.Companion.fromLocalDate
 import com.fortechteams.valuetypes.person.BirthDate.Companion.fromString
+import com.fortechteams.valuetypes.person.exception.InvalidBirthDateException
 import java.time.LocalDate
 import java.time.Period
 
