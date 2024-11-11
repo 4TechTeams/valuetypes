@@ -14,7 +14,13 @@ kotlin {
 
   sourceSets {
 
-    val commonTest by getting {
+    commonMain {
+      dependencies {
+        implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
+      }
+    }
+
+    commonTest {
       dependencies {
         implementation(libs.kotlin.test)
         implementation(libs.kotest.assertions.core)
@@ -25,7 +31,7 @@ kotlin {
       }
     }
 
-    val jvmTest by getting {
+    jvmTest {
       dependencies {
         implementation(libs.kotest.runner.junit5)
         implementation(libs.kotlinx.knit.test)
