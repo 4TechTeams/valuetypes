@@ -4,7 +4,9 @@ import com.fortechteams.valuetypes.network.exception.InvalidNameException
 import com.fortechteams.valuetypes.personal.NameValidator.validateName
 
 /**
- * Represents a person's first name as a validated value class.
+ * Represents any name of a natural person
+ *
+ * Serves as base class for [FirstName] and [LastName]
  *
  * <!--- TEST_NAME NameKnitTest -->
  */
@@ -151,8 +153,6 @@ value class FirstName private constructor(
 
 /**
  * Represents a person's last name as a validated value class.
- *
- * <!--- TEST_NAME LastNameKnitTest -->
  *
  * This implementation provides a type-safe way to handle last names while ensuring
  * basic validation rules and proper formatting.
