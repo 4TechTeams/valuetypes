@@ -1,16 +1,22 @@
-import com.fortechteams.dnsdsl.valuetypes.SubnetMask
-import com.fortechteams.dnsdsl.valuetypes.exception.InvalidSubnetMaskException
+package com.fortechteams.valuetypes.network
+
+import com.fortechteams.valuetypes.network.exception.InvalidSubnetMaskException
 import kotlin.test.*
 
 class SubnetMaskTest {
   @Test
   fun `test creation from valid string representations`() {
     val validMasks = listOf(
-      "255.255.255.255", // /32
-      "255.255.255.0",   // /24
-      "255.255.0.0",     // /16
-      "255.0.0.0",       // /8
-      "0.0.0.0"          // /0
+      // /32
+      "255.255.255.255",
+      // /24
+      "255.255.255.0",
+      // /16
+      "255.255.0.0",
+      // /8
+      "255.0.0.0",
+      // /0
+      "0.0.0.0"
     )
 
     validMasks.forEach { mask ->
@@ -23,13 +29,20 @@ class SubnetMaskTest {
   @Test
   fun `test invalid string formats`() {
     val invalidMasks = listOf(
-      "256.255.255.255",  // Invalid octet value
-      "255.255.255",      // Too few octets
-      "255.255.255.255.0", // Too many octets
-      "255.255.a.255",    // Invalid character
-      "255.255..255",     // Empty octet
-      ".255.255.255",     // Leading dot
-      "255.255.255.",     // Trailing dot
+      // Invalid octet value
+      "256.255.255.255",
+      // Too few octets
+      "255.255.255",
+      // Too many octets
+      "255.255.255.255.0",
+      // Invalid character
+      "255.255.a.255",
+      // Empty octet
+      "255.255..255",
+      // Leading dot
+      ".255.255.255",
+      // Trailing dot
+      "255.255.255.",
     )
 
     invalidMasks.forEach { mask ->
@@ -128,22 +141,22 @@ class SubnetMaskTest {
       assertEquals(
         expectedOctets[0].toUByte(),
         mask.octet1(),
-        "First octet mismatch for ${mask}"
+        "First octet mismatch for $mask"
       )
       assertEquals(
         expectedOctets[1].toUByte(),
         mask.octet2(),
-        "Second octet mismatch for ${mask}"
+        "Second octet mismatch for $mask"
       )
       assertEquals(
         expectedOctets[2].toUByte(),
         mask.octet3(),
-        "Third octet mismatch for ${mask}"
+        "Third octet mismatch for $mask"
       )
       assertEquals(
         expectedOctets[3].toUByte(),
         mask.octet4(),
-        "Fourth octet mismatch for ${mask}"
+        "Fourth octet mismatch for $mask"
       )
     }
   }

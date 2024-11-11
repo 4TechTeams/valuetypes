@@ -1,6 +1,6 @@
-package com.fortechteams.dnsdsl.valuetypes
+package com.fortechteams.valuetypes.network
 
-import com.fortechteams.dnsdsl.valuetypes.exception.InvalidSubnetMaskException
+import com.fortechteams.valuetypes.network.exception.InvalidSubnetMaskException
 import kotlin.jvm.JvmInline
 
 @JvmInline
@@ -107,8 +107,11 @@ value class SubnetMask private constructor(private val value: UInt) {
         return Result.failure(IllegalArgumentException("Prefix length must be between 0 and 32"))
       }
 
-      val value = if (length == 0) 0u else
+      val value = if (length == 0) {
+        0u
+      } else {
         0xFFFF_FFFFu shl (32 - length)
+      }
 
       return Result.success(SubnetMask(value))
     }

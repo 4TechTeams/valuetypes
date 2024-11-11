@@ -1,4 +1,4 @@
-package com.fortechteams.dnsdsl.valuetypes
+package com.fortechteams.valuetypes.network
 
 import kotlin.jvm.JvmInline
 

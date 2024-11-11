@@ -1,4 +1,4 @@
-package com.fortechteams.dnsdsl.valuetypes
+package com.fortechteams.valuetypes.network
 
 enum class NetworkClass {
   A, // 0.0.0.0 to 127.255.255.255

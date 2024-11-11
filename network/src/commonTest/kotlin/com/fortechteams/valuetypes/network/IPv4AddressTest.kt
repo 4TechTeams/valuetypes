@@ -1,4 +1,4 @@
-package com.fortechteams.dnsdsl.valuetypes
+package com.fortechteams.valuetypes.network
 
 import io.kotest.matchers.shouldBe
 import kotlin.test.Test
@@ -95,10 +95,10 @@ class IPv4AddressTest {
     val ip = IPv4Address.fromOctets(192, 168, 1, 1).getOrNull()
     assertNotNull(ip)
 
-    ip.octet1() shouldBe 192u.toUByte()
-    ip.octet2() shouldBe 168u.toUByte()
-    ip.octet3() shouldBe 1u.toUByte()
-    ip.octet4() shouldBe 1u.toUByte()
+    ip.octet1 shouldBe 192u.toUByte()
+    ip.octet2 shouldBe 168u.toUByte()
+    ip.octet3 shouldBe 1u.toUByte()
+    ip.octet4 shouldBe 1u.toUByte()
   }
 
   @Test

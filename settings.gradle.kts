@@ -21,5 +21,6 @@ includeBuild("convention-plugins")
 include(
   ":library",
   ":personal",
-  ":network"
+  ":network",
+  ":examples"
 )

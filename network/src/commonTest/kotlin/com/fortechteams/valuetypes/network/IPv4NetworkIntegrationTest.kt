@@ -1,6 +1,5 @@
-import com.fortechteams.dnsdsl.valuetypes.IPv4Address
-import com.fortechteams.dnsdsl.valuetypes.NetworkClass
-import com.fortechteams.dnsdsl.valuetypes.SubnetMask
+package com.fortechteams.valuetypes.network
+
 import io.kotest.matchers.shouldBe
 import kotlin.test.Test
 import kotlin.test.assertNotNull

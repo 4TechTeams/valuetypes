@@ -1,6 +1,5 @@
 package com.fortechteams.dnsdsl
 
-import com.fortechteams.dnsdsl.valuetypes.Domain
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -43,8 +42,10 @@ data class Zone(
   /**
    * The zone's root domain name (e.g., "example.com").
    * Expected to be normalized (lowercase, no trailing dot).
+   *
+   * TODO: Use valuetypes Domain
    */
-  val domain: Domain,
+  val domain: String,
 
   /**
    * The zone's mandatory Start of Authority record.
