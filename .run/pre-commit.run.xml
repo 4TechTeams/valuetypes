@@ -11,9 +11,9 @@
       <option name="taskNames">
         <list>
           <option value=":clean" />
-          <option value=":knit" />
+          <option value="knit" />
           <option value="dokkaGeneratePublicationHtml" />
-          <option value=":check" />
+          <option value="check" />
           <option value=":koverHtmlReport" />
         </list>
       </option>
