@@ -1,7 +1,7 @@
-package com.fortechteams.valuetypes.personal
+package com.fortechteams.valuetypes.person
 
-import com.fortechteams.valuetypes.personal.NameValidator.isPrintable
-import com.fortechteams.valuetypes.personal.NameValidator.validateName
+import com.fortechteams.valuetypes.person.NameValidator.isPrintable
+import com.fortechteams.valuetypes.person.NameValidator.validateName
 import io.kotest.matchers.result.shouldBeFailure
 import io.kotest.matchers.result.shouldBeSuccess
 import io.kotest.matchers.shouldBe

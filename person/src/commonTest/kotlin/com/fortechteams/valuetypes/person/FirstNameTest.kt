@@ -1,4 +1,4 @@
-package com.fortechteams.valuetypes.personal
+package com.fortechteams.valuetypes.person
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.matchers.result.shouldBeFailure

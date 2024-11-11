@@ -1,7 +1,7 @@
-package com.fortechteams.valuetypes.personal
+package com.fortechteams.valuetypes.person
 
 import com.fortechteams.valuetypes.network.exception.InvalidNameException
-import com.fortechteams.valuetypes.personal.NameValidator.validateName
+import com.fortechteams.valuetypes.person.NameValidator.validateName
 
 /**
  * Represents any name of a natural person
@@ -74,7 +74,7 @@ object NameValidator {
  * ## Example
  *
  * ```kotlin
- * import com.fortechteams.valuetypes.personal.FirstName
+ * import com.fortechteams.valuetypes.person.FirstName
  * import io.kotest.matchers.shouldBe
  * import io.kotest.matchers.types.shouldBeInstanceOf
  *
@@ -160,7 +160,7 @@ value class FirstName private constructor(
  * ## Example
  *
  * ```kotlin
- * import com.fortechteams.valuetypes.personal.LastName
+ * import com.fortechteams.valuetypes.person.LastName
  * import io.kotest.matchers.shouldBe
  * import io.kotest.matchers.types.shouldBeInstanceOf
  *

@@ -24,10 +24,10 @@ plugins {
 }
 
 dependencies {
-  kover(project(":personal"))
+  kover(project(":person"))
   kover(project(":network"))
 
-  dokka(project(":personal"))
+  dokka(project(":person"))
   dokka(project(":network"))
 }
 

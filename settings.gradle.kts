@@ -20,7 +20,7 @@ includeBuild("convention-plugins")
 // libs
 include(
   ":library",
-  ":personal",
+  ":person",
   ":network",
   ":examples"
 )
