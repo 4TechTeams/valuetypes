@@ -23,7 +23,7 @@ dokka {
 
       sourceLink {
         localDirectory = rootDir
-        remoteUrl = URI("https://github.com/kresult/kresult/tree/main")
+        remoteUrl = URI("https://github.com/4TechTeams/valuetypes/tree/main")
         remoteLineSuffix = "#L"
       }
     }

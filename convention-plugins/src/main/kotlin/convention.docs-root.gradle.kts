@@ -71,7 +71,7 @@ tasks {
 }
 
 knit {
-  siteRoot = "https://kresult.io/"
+  siteRoot = "https://valuetypes.4techteams.com/"
   rootDir = projectDir
   moduleRoots = listOf(".")
   moduleMarkers = listOf("build.gradle.kts")

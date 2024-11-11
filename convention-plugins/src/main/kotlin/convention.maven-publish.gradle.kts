@@ -13,14 +13,14 @@ configure<MavenPublishBaseExtension> {
   signAllPublications()
   coordinates(group.toString(), project.name, version)
   pom {
-    name.set("KResult")
-    description.set("An opinionated, functional Result type for Kotlin")
+    name.set("ValueTypes")
+    description.set("A collection of useful, domain-specific and explicit predefined value-types for Kotlin & Java")
     inceptionYear.set("2024")
-    url.set("https://kresult.io")
+    url.set("https://valuetypes.4techteams.com")
     licenses {
       license {
-        name.set("MIT")
-        url.set("https://opensource.org/licenses/MIT")
+        name.set("Apache License, Version 2.0")
+        url.set("https://opensource.org/license/apache-2-0")
       }
     }
     developers {
@@ -30,17 +30,17 @@ configure<MavenPublishBaseExtension> {
         url.set("https://frankneff.com")
       }
       developer {
-        id.set("kresult-contributors")
-        name.set("KResult Contributors")
-        url.set("https://github.com/kresult/kresult/graphs/contributors")
+        id.set("4techteams-contributors")
+        name.set("4TechTeams Contributors")
+        url.set("https://4techteams.com")
       }
     }
     issueManagement {
       system.set("GitHub Issues")
-      url.set("https://github.com/kresult/kresult/issues")
+      url.set("https://github.com/4TechTeams/valuetypes/issues")
     }
     scm {
-      url.set("https://github.com/kresult/kresult")
+      url.set("https://github.com/4TechTeams/valuetypes")
     }
   }
 }
