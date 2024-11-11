@@ -4,6 +4,6 @@ $dokka.linkExtension:html
 module:network
 com.fortechteams.valuetypes.network
 com.fortechteams.valuetypes.network.exception
-module:personal
+module:person
 com.fortechteams.valuetypes.network.exception
-com.fortechteams.valuetypes.personal
+com.fortechteams.valuetypes.person

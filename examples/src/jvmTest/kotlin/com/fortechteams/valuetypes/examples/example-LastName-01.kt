@@ -1,7 +1,7 @@
 // This file was automatically generated from Name.kt by Knit tool. Do not edit.
 package com.fotechteams.valuetypes.examples.exampleLastName01
 
-import com.fortechteams.valuetypes.personal.LastName
+import com.fortechteams.valuetypes.person.LastName
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.types.shouldBeInstanceOf
 
