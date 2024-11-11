@@ -1,5 +1,6 @@
 package com.fortechteams.valuetypes.person
 
+import com.fortechteams.valuetypes.network.exception.InvalidBirthDateException
 import com.fortechteams.valuetypes.person.BirthDate.Companion.fromDate
 import com.fortechteams.valuetypes.person.BirthDate.Companion.fromLocalDate
 import com.fortechteams.valuetypes.person.BirthDate.Companion.fromString
@@ -208,7 +209,8 @@ value class BirthDate private constructor(private val value: LocalDate) {
       val (year, month, day) = datePatterns
         .firstOrNull { it.regex.matches(date) }
         ?.parse?.invoke(date)
-        ?: throw IllegalArgumentException(
+        ?: throw InvalidBirthDateException(
+          date,
           "Invalid date format. Supported formats: YYYY-MM-DD, DD.MM.YYYY, YYYY/MM/DD, DD/MM/YYYY"
         )
 
@@ -257,7 +259,7 @@ value class BirthDate private constructor(private val value: LocalDate) {
       val today = LocalDate.now()
       return when {
         date.isAfter(today) ->
-          Result.failure(IllegalArgumentException("birthdate cannot be in the future"))
+          Result.failure(InvalidBirthDateException(date.toString(), "Cannot be in the future"))
 
         else ->
           Result.success(BirthDate(date))
