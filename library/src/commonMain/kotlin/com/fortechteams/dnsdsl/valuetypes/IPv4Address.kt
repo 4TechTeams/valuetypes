@@ -14,6 +14,17 @@ value class IPv4Address private constructor(private val value: UInt) {
 
   fun toUInt(): UInt = value
 
+  /**
+   * Determines the network class of this IP address.
+   */
+  fun networkClass(): NetworkClass = when (octet1().toInt()) {
+    in 0..127 -> NetworkClass.A
+    in 128..191 -> NetworkClass.B
+    in 192..223 -> NetworkClass.C
+    in 224..239 -> NetworkClass.D
+    else -> NetworkClass.E
+  }
+
   companion object {
     fun fromString(ip: String): Result<IPv4Address> =
       ip
@@ -23,7 +34,6 @@ value class IPv4Address private constructor(private val value: UInt) {
           when {
             octets.size != 4 ->
               Result.failure(IllegalArgumentException("Invalid IP address format: must have exactly 4 parts"))
-
             else ->
               fromOctets(octets[0], octets[1], octets[2], octets[3])
           }
@@ -42,7 +52,6 @@ value class IPv4Address private constructor(private val value: UInt) {
       IPv4Address(value)
     }
 
-    // UByte version for convenience
     fun fromOctets(a: UByte, b: UByte, c: UByte, d: UByte): Result<IPv4Address> =
       fromOctets(a.toInt(), b.toInt(), c.toInt(), d.toInt())
 
