@@ -1,5 +1,10 @@
 # ValueTypes
 
+> This project is in an **early stage of development**, where structural and backwards-compatibility-breaking changes could 
+> be made. 
+> 
+> Until **1.0.0**, all versions of this project should be considered beta pre-releases.
+
 **A collection of useful, domain-specific and explicit predefined value-types for Kotlin & Java**
 
 *Value types are immutable data objects that are compared and considered equal based on their values rather than their 
