@@ -39,7 +39,7 @@ object NameValidator {
    * @param value The string to validate
    * @param maxLength The maximum allowed length
    * @param fieldName The name of the field for error messages
-   * @return A [Result] containing either the validated string or a failure with [IllegalArgumentException]
+   * @return A [Result] containing either the validated string or a failure with [InvalidNameException]
    */
   fun validateName(value: String, maxLength: Int): Result<String> {
     val trimmed = value.trim()
@@ -141,7 +141,7 @@ value class FirstName private constructor(
      * Creates a new [FirstName] instance after applying validation rules.
      *
      * @param value The string to create the first name from
-     * @return A [Result] containing either the valid [FirstName] or a failure with [IllegalArgumentException]
+     * @return A [Result] containing either the valid [FirstName] or a failure with [InvalidNameException]
      */
     fun of(value: String): Result<FirstName> =
       validateName(value, MAX_LENGTH)
@@ -228,7 +228,7 @@ value class LastName private constructor(
      * Creates a new [LastName] instance after applying validation rules.
      *
      * @param value The string to create the last name from
-     * @return A [Result] containing either the valid [LastName] or a failure with [IllegalArgumentException]
+     * @return A [Result] containing either the valid [LastName] or a failure with [InvalidNameException]
      */
     fun of(value: String): Result<LastName> =
       validateName(value, MAX_LENGTH)
