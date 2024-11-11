@@ -1,0 +1,282 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>IPv6Address</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script>
+<link href="../../../styles/multimodule.css" rel="Stylesheet"></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../../index.html">
+                            valuetypes
+                    </a>            </div>
+            <div class="library-version">
+<dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.fortechteams.valuetypes.network/-i-pv6-address/index.html&quot;}">0.1.X</dokka-template-command>            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":network/commonMain">common</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="network::com.fortechteams.valuetypes.network/IPv6Address///PointingToDeclaration//-1444144345">
+  <div class="breadcrumbs"><a href="../../index.html">network</a><span class="delimiter">/</span><a href="../index.html">com.fortechteams.valuetypes.network</a><span class="delimiter">/</span><span class="current">IPv6Address</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>IPv6Address</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">value </span><span class="token keyword">class </span><a href="index.html">IPv6Address</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/kresult/kresult/tree/main/network/src/commonMain/kotlin/com/fortechteams/valuetypes/network/IPv6Address.kt#L44">source</a>)</span></span></div><p class="paragraph">Represents an IPv6 address as a value class wrapping two unsigned 64-bit integers.</p><p class="paragraph">This implementation provides a memory-efficient way to handle IPv6 addresses while ensuring type safety and offering convenient conversion methods. The address is stored as two ULong values representing the higher and lower 64 bits of the address.</p><p class="paragraph">Example usage:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">@Test<br>fun ipv6Address_examples() {<br>  // Create from string<br>  val addr = IPv6Address.fromString("2001:db8::1").getOrNull()<br>  println(addr.toString()) // Prints: 2001:db8::1<br><br>  // Access 16-bit blocks<br>  println(addr.block1) // Prints: 0x2001<br><br>  // Check if private address<br>  println(addr.isPrivate()) // Prints: false<br><br>  // Use predefined constants<br>  println(IPv6Address.LOCALHOST) // Prints: ::1<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">The class provides several factory methods for creating IPv6 addresses:</p><ul><li><p class="paragraph"><a href="-companion/from-string.html">fromString</a> for parsing string representations</p></li><li><p class="paragraph"><a href="-companion/from-blocks.html">fromBlocks</a> for creating from eight 16-bit integers</p></li><li><p class="paragraph"><a href="-companion/from-u-longs.html">fromULongs</a> for creating from two 64-bit unsigned integers</p></li></ul><p class="paragraph">Common IP addresses are available as constants:</p><ul><li><p class="paragraph"><a href="-companion/-l-o-c-a-l-h-o-s-t.html">LOCALHOST</a> (::1)</p></li><li><p class="paragraph"><a href="-companion/-u-n-s-p-e-c-i-f-i-e-d.html">UNSPECIFIED</a> (::)</p></li></ul></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="756978019%2FClasslikes%2F-1444144345" anchor-label="Companion" id="756978019%2FClasslikes%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="756978019%2FClasslikes%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="127460090%2FProperties%2F-1444144345" anchor-label="block1" id="127460090%2FProperties%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="block1.html"><span><span>block1</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="127460090%2FProperties%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="block1.html">block1</a><span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span></div><div class="brief "><p class="paragraph">First 16-bit block of the IPv6 address (bits 127-112).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="158479897%2FProperties%2F-1444144345" anchor-label="block2" id="158479897%2FProperties%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="block2.html"><span><span>block2</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="158479897%2FProperties%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="block2.html">block2</a><span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span></div><div class="brief "><p class="paragraph">Second 16-bit block of the IPv6 address (bits 111-96).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="189499704%2FProperties%2F-1444144345" anchor-label="block3" id="189499704%2FProperties%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="block3.html"><span><span>block3</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="189499704%2FProperties%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="block3.html">block3</a><span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span></div><div class="brief "><p class="paragraph">Third 16-bit block of the IPv6 address (bits 95-80).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="220519511%2FProperties%2F-1444144345" anchor-label="block4" id="220519511%2FProperties%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="block4.html"><span><span>block4</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="220519511%2FProperties%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="block4.html">block4</a><span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span></div><div class="brief "><p class="paragraph">Fourth 16-bit block of the IPv6 address (bits 79-64).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="251539318%2FProperties%2F-1444144345" anchor-label="block5" id="251539318%2FProperties%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="block5.html"><span><span>block5</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="251539318%2FProperties%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="block5.html">block5</a><span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span></div><div class="brief "><p class="paragraph">Fifth 16-bit block of the IPv6 address (bits 63-48).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="282559125%2FProperties%2F-1444144345" anchor-label="block6" id="282559125%2FProperties%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="block6.html"><span><span>block6</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="282559125%2FProperties%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="block6.html">block6</a><span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span></div><div class="brief "><p class="paragraph">Sixth 16-bit block of the IPv6 address (bits 47-32).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="313578932%2FProperties%2F-1444144345" anchor-label="block7" id="313578932%2FProperties%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="block7.html"><span><span>block7</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="313578932%2FProperties%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="block7.html">block7</a><span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span></div><div class="brief "><p class="paragraph">Seventh 16-bit block of the IPv6 address (bits 31-16).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="344598739%2FProperties%2F-1444144345" anchor-label="block8" id="344598739%2FProperties%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="block8.html"><span><span>block8</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="344598739%2FProperties%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="block8.html">block8</a><span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span></div><div class="brief "><p class="paragraph">Eighth 16-bit block of the IPv6 address (bits 15-0).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1638051139%2FFunctions%2F-1444144345" anchor-label="isPrivate" id="1638051139%2FFunctions%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="is-private.html"><span>is</span><wbr><span><span>Private</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1638051139%2FFunctions%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="is-private.html"><span class="token function">isPrivate</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Determines whether this IP address is in a private network range.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-30277998%2FFunctions%2F-1444144345" anchor-label="toString" id="-30277998%2FFunctions%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-string.html"><span>to</span><wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-30277998%2FFunctions%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="to-string.html"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Returns the string representation of the IPv6 address using standard notation, including compression of zero blocks using ::</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-903436863%2FFunctions%2F-1444144345" anchor-label="toULongs" id="-903436863%2FFunctions%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="to-u-longs.html"><span>to</span><wbr><span><span>ULongs</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-903436863%2FFunctions%2F-1444144345"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="to-u-longs.html"><span class="token function">toULongs</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token operator">&lt;</span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token punctuation">, </span><span data-unresolved-link="/<Error class: unknown class>///PointingToDeclaration/">&lt;Error class: unknown class&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns the high and low 64-bit values of this IPv6 address.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2024 Copyright</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

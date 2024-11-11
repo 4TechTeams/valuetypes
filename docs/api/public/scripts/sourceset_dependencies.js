@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":personal/commonMain":[],":personal/jvmMain":[":personal/commonMain"],":network/commonMain":[],":network/jvmMain":[":network/commonMain"]}'
