@@ -1,18 +1,18 @@
-package com.fortechteams.valuetypes.person.switzerland
+package com.fortechteams.valuetypes.switzerland
 
 /**
  * Represents Swiss cantons with their official codes and names in all national languages.
  *
- * <!--- TEST_NAME CantonKnitTest -->
+ * <!--- TEST_NAME SwitzerlandCantonKnitTest -->
  *
  * ## Example
  *
  * ```kotlin
- * import com.fortechteams.valuetypes.person.switzerland.Canton
+ * import com.fortechteams.valuetypes.switzerland.Canton
  * import io.kotest.matchers.shouldBe
  *
  * fun test() {
- *   val zurich = Canton.ZH
+ *   val zurich = Canton.ZUERICH
  *
  *   zurich.code shouldBe "ZH"
  *   zurich.defaultName shouldBe "Zürich"      // German, as it's in the German-speaking region
@@ -21,11 +21,11 @@ package com.fortechteams.valuetypes.person.switzerland
  *   zurich.italianName shouldBe "Zurigo"
  *   zurich.englishName shouldBe "Zurich"
  *
- *   val geneva = Canton.GE
+ *   val geneva = Canton.GENEVE
  *   geneva.defaultName shouldBe "Genève"      // French, as it's in the French-speaking region
  * }
  * ```
- * <!--- KNIT example-Canton-01.kt -->
+ * <!--- KNIT example-switzerland-Canton-01.kt -->
  * <!--- TEST lines.isEmpty() -->
  */
 enum class Canton(
@@ -38,7 +38,7 @@ enum class Canton(
 ) {
 
   // German-speaking cantons
-  ZH(
+  ZUERICH(
     "ZH",
     "Zürich",
     "Zürich",
@@ -46,7 +46,7 @@ enum class Canton(
     "Zurigo",
     "Zurich"
   ),
-  BE(
+  BERN(
     "BE",
     "Bern",
     "Bern",
@@ -54,7 +54,7 @@ enum class Canton(
     "Berna",
     "Bern"
   ),
-  LU(
+  LUZERN(
     "LU",
     "Luzern",
     "Luzern",
@@ -62,7 +62,7 @@ enum class Canton(
     "Lucerna",
     "Lucerne"
   ),
-  UR(
+  URI(
     "UR",
     "Uri",
     "Uri",
@@ -70,7 +70,7 @@ enum class Canton(
     "Uri",
     "Uri"
   ),
-  SZ(
+  SCHWYZ(
     "SZ",
     "Schwyz",
     "Schwyz",
@@ -78,7 +78,7 @@ enum class Canton(
     "Svitto",
     "Schwyz"
   ),
-  OW(
+  OBWALDEN(
     "OW",
     "Obwalden",
     "Obwalden",
@@ -86,7 +86,7 @@ enum class Canton(
     "Obvaldo",
     "Obwalden"
   ),
-  NW(
+  NIDWALDEN(
     "NW",
     "Nidwalden",
     "Nidwalden",
@@ -94,7 +94,7 @@ enum class Canton(
     "Nidvaldo",
     "Nidwalden"
   ),
-  GL(
+  GLARUS(
     "GL",
     "Glarus",
     "Glarus",
@@ -102,7 +102,7 @@ enum class Canton(
     "Glarona",
     "Glarus"
   ),
-  ZG(
+  ZUG(
     "ZG",
     "Zug",
     "Zug",
@@ -110,7 +110,7 @@ enum class Canton(
     "Zugo",
     "Zug"
   ),
-  SO(
+  SOLOTHURN(
     "SO",
     "Solothurn",
     "Solothurn",
@@ -118,7 +118,7 @@ enum class Canton(
     "Soletta",
     "Solothurn"
   ),
-  BS(
+  BASEL_STADT(
     "BS",
     "Basel",
     "Basel-Stadt",
@@ -126,7 +126,7 @@ enum class Canton(
     "Basilea Città",
     "Basel-City"
   ),
-  BL(
+  BASEL_LANDSCHAFT(
     "BL",
     "Basel-Landschaft",
     "Basel-Landschaft",
@@ -134,7 +134,7 @@ enum class Canton(
     "Basilea Campagna",
     "Basel-Country"
   ),
-  SH(
+  SCHAFFHAUSEN(
     "SH",
     "Schaffhausen",
     "Schaffhausen",
@@ -142,7 +142,7 @@ enum class Canton(
     "Sciaffusa",
     "Schaffhausen"
   ),
-  AR(
+  APPENZELL_AUSSERRHODEN(
     "AR",
     "Appenzell Ausserrhoden",
     "Appenzell Ausserrhoden",
@@ -150,7 +150,7 @@ enum class Canton(
     "Appenzello Esterno",
     "Appenzell Outer Rhodes"
   ),
-  AI(
+  APPENZELL_INNERRHODEN(
     "AI",
     "Appenzell Innerrhoden",
     "Appenzell Innerrhoden",
@@ -158,7 +158,7 @@ enum class Canton(
     "Appenzello Interno",
     "Appenzell Inner Rhodes"
   ),
-  SG(
+  SANKT_GALLEN(
     "SG",
     "St. Gallen",
     "St. Gallen",
@@ -166,7 +166,7 @@ enum class Canton(
     "San Gallo",
     "St. Gallen"
   ),
-  GR(
+  GRAUBUENDEN(
     "GR",
     "Graubünden",
     "Graubünden",
@@ -174,7 +174,7 @@ enum class Canton(
     "Grigioni",
     "Graubünden"
   ),
-  AG(
+  AARGAU(
     "AG",
     "Aargau",
     "Aargau",
@@ -182,7 +182,7 @@ enum class Canton(
     "Argovia",
     "Aargau"
   ),
-  TG(
+  THURGAU(
     "TG",
     "Thurgau",
     "Thurgau",
@@ -192,7 +192,7 @@ enum class Canton(
   ),
 
   // French-speaking cantons
-  GE(
+  GENEVE(
     "GE",
     "Genève",
     "Genf",
@@ -200,7 +200,7 @@ enum class Canton(
     "Ginevra",
     "Geneva"
   ),
-  VD(
+  VAUD(
     "VD",
     "Vaud",
     "Waadt",
@@ -208,7 +208,7 @@ enum class Canton(
     "Vaud",
     "Vaud"
   ),
-  NE(
+  NEUCHATEL(
     "NE",
     "Neuchâtel",
     "Neuenburg",
@@ -216,7 +216,7 @@ enum class Canton(
     "Neuchâtel",
     "Neuchâtel"
   ),
-  JU(
+  JURA(
     "JU",
     "Jura",
     "Jura",
@@ -226,7 +226,7 @@ enum class Canton(
   ),
 
   // Italian-speaking canton
-  TI(
+  TICINO(
     "TI",
     "Ticino",
     "Tessin",
@@ -236,7 +236,7 @@ enum class Canton(
   ),
 
   // Bilingual cantons (German/French)
-  FR(
+  FRIBOURG(
     "FR",
     "Fribourg",
     "Freiburg",
@@ -244,7 +244,7 @@ enum class Canton(
     "Friburgo",
     "Fribourg"
   ),
-  VS(
+  VALAIS(
     "VS",
     "Valais",
     "Wallis",
@@ -259,16 +259,16 @@ enum class Canton(
      * Returns the canton for the given code, ignoring case.
      *
      * ```kotlin
-     * import com.fortechteams.valuetypes.person.switzerland.Canton
+     * import com.fortechteams.valuetypes.switzerland.Canton
      * import io.kotest.matchers.shouldBe
      *
      * fun test() {
-     *   Canton.fromCode("ZH") shouldBe Canton.ZH
-     *   Canton.fromCode("zh") shouldBe Canton.ZH
+     *   Canton.fromCode("ZH") shouldBe Canton.ZUERICH
+     *   Canton.fromCode("zh") shouldBe Canton.ZUERICH
      *   Canton.fromCode("invalid") shouldBe null
      * }
      * ```
-     * <!--- KNIT example-Canton-02.kt -->
+     * <!--- KNIT example-switzerland-Canton-02.kt -->
      * <!--- TEST lines.isEmpty() -->
      */
     fun fromCode(code: String): Canton? =
@@ -279,18 +279,18 @@ enum class Canton(
      * Matching is case-insensitive and ignores leading/trailing whitespace.
      *
      * ```kotlin
-     * import com.fortechteams.valuetypes.person.switzerland.Canton
+     * import com.fortechteams.valuetypes.switzerland.Canton
      * import io.kotest.matchers.shouldBe
      *
      * fun test() {
      *   // Matches different name variants
-     *   Canton.fromName("Zürich") shouldBe Canton.ZH
-     *   Canton.fromName("Geneva") shouldBe Canton.GE
-     *   Canton.fromName(" Bern ") shouldBe Canton.BE
+     *   Canton.fromName("Zürich") shouldBe Canton.ZUERICH
+     *   Canton.fromName("Geneva") shouldBe Canton.GENEVE
+     *   Canton.fromName(" Bern ") shouldBe Canton.BERN
      *   Canton.fromName("invalid") shouldBe null
      * }
      * ```
-     * <!--- KNIT example-Canton-03.kt -->
+     * <!--- KNIT example-switzerland-Canton-03.kt -->
      * <!--- TEST lines.isEmpty() -->
      */
     fun fromName(name: String): Canton? {
