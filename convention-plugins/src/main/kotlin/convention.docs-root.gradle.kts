@@ -75,7 +75,7 @@ knit {
   rootDir = projectDir
   moduleRoots = listOf(".")
   moduleMarkers = listOf("build.gradle.kts")
-  moduleDocs = docDir.toString()
+  moduleDocs = publicOutputDir.toString()
   files = fileTree(projectDir) {
     include("**/*.md")
     include("**/*.kt")
