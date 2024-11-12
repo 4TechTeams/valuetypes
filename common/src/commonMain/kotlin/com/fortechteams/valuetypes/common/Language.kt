@@ -699,6 +699,8 @@ enum class Language(
     scriptDirection = ScriptDirection.LTR
   ),
 
+
+
   LAO(
     twoLetterCode = "lo",
     threeLetterCode = "lao",
@@ -1433,6 +1435,46 @@ enum class Language(
     nativeName = "isiZulu",
     englishName = "Zulu",
     scriptDirection = ScriptDirection.LTR
+  ),
+
+  SICILIAN(
+    twoLetterCode = "scn",
+    threeLetterCode = "scn",
+    nativeName = "Sicilianu",
+    englishName = "Sicilian",
+    scriptDirection = ScriptDirection.LTR
+  ),
+
+  KOMI_ZYRIAN(
+    twoLetterCode = "kv",
+    threeLetterCode = "kom",
+    nativeName = "Коми-зырян",
+    englishName = "Komi-Zyrian",
+    scriptDirection = ScriptDirection.LTR
+  ),
+
+  KOMI_PERMYAK(
+    twoLetterCode = "kv",
+    threeLetterCode = "koi",
+    nativeName = "Коми-пермяцкӧй",
+    englishName = "Komi-Permyak",
+    scriptDirection = ScriptDirection.LTR
+  ),
+
+  OLD_CHURCH_SLAVONIC(
+    twoLetterCode = "cu",
+    threeLetterCode = "chu",
+    nativeName = "Ѩзыкъ словѣньскъ",
+    englishName = "Old Church Slavonic",
+    scriptDirection = ScriptDirection.LTR
+  ),
+
+  SIKSIKA(
+    twoLetterCode = "bla",
+    threeLetterCode = "bla",
+    nativeName = "ᓱᖽᐧᖿ",
+    englishName = "Siksika",
+    scriptDirection = ScriptDirection.LTR
   );
 
   /**
@@ -1443,12 +1485,7 @@ enum class Language(
     LTR,
 
     /** Right to Left script direction */
-    RTL,
-
-    /**
-     * Depends on the script used
-     */
-    BOTH
+    RTL
   }
 
   companion object {
@@ -1468,8 +1505,7 @@ enum class Language(
      * <!--- KNIT example-common-Language-02.kt -->
      * <!--- TEST lines.isEmpty() -->
      */
-    fun fromTwoLetterCode(code: String): Language? =
-      entries.find { it.twoLetterCode.equals(code, ignoreCase = true) }
+    fun fromTwoLetterCode(code: String): Language? = entries.find { it.twoLetterCode.equals(code, ignoreCase = true) }
 
     /**
      * Returns the language for the given ISO 639-2/T three-letter code, ignoring case.

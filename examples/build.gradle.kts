@@ -11,6 +11,8 @@ kotlin {
 
     val commonTest by getting {
       dependencies {
+        implementation(project(":core"))
+        implementation(project(":switzerland"))
         implementation(project(":person"))
         implementation(project(":network"))
         implementation(libs.kotlin.test)

@@ -15,6 +15,12 @@ kotlin {
 
   sourceSets {
 
+    commonMain {
+      dependencies {
+        api(project(":common"))
+      }
+    }
+
     commonTest {
       dependencies {
         implementation(libs.kotlin.test)
