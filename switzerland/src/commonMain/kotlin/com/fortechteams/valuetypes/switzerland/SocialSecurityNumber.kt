@@ -1,15 +1,19 @@
 package com.fortechteams.valuetypes.switzerland
 
+import com.fortechteams.valuetypes.common.BaseSocialSecurityNumber
 import com.fortechteams.valuetypes.common.exception.InvalidSocialSecurityNumberException
 import kotlin.jvm.JvmInline
 
 /**
  * Represents a Swiss Social Security Number (AHV-Nummer).
  *
- * <!--- TEST_NAME SocialSecurityNumberKnitTest -->
+ * <!--- TEST_NAME SwitzerlandSocialSecurityNumberKnitTest -->
  *
  * Swiss social security numbers (AHV-Nummer) are unique personal identifiers in Switzerland.
- * They follow a specific format and include validation rules:
+ *
+ * ## Validation
+ *
+ * Swiss SSN follow a specific format and include validation rules:
  *
  * - Format: 756.XXXX.XXXX.XX
  * - Starts with country code 756 (Switzerland)
@@ -30,30 +34,66 @@ import kotlin.jvm.JvmInline
  *   SocialSecurityNumber.fromString("756.1234.5678.98").isFailure shouldBe true
  * }
  * ```
- * <!--- KNIT example-SocialSecurityNumber-01.kt -->
+ * <!--- KNIT example-switzerland-SocialSecurityNumber-01.kt -->
  * <!--- TEST lines.isEmpty() -->
  */
 @JvmInline
 value class SocialSecurityNumber private constructor(
-  val value: String,
-) {
+  override val value: String,
+) : BaseSocialSecurityNumber {
 
   override fun toString(): String = value
 
   /**
    * The country code part of the SSN (always "756" for Switzerland)
+   *
+   * ```kotlin
+   * import com.fortechteams.valuetypes.switzerland.SocialSecurityNumber
+   * import io.kotest.matchers.shouldBe
+   *
+   * fun test() {
+   *   val ssn = SocialSecurityNumber.fromString("756.1234.5678.97").getOrThrow()
+   *   ssn.countryCode shouldBe "756"
+   * }
+   * ```
+   * <!--- KNIT example-switzerland-SocialSecurityNumber-02.kt -->
+   * <!--- TEST lines.isEmpty() -->
    */
   val countryCode: String
     get() = value.substring(0, 3)
 
   /**
    * The personal identification number part (8 digits)
+   *
+   * ```kotlin
+   * import com.fortechteams.valuetypes.switzerland.SocialSecurityNumber
+   * import io.kotest.matchers.shouldBe
+   *
+   * fun test() {
+   *   val ssn = SocialSecurityNumber.fromString("756.1234.5678.97").getOrThrow()
+   *   ssn.personalNumber shouldBe "12345678"
+   * }
+   * ```
+   * <!--- KNIT example-switzerland-SocialSecurityNumber-03.kt -->
+   * <!--- TEST lines.isEmpty() -->
    */
   val personalNumber: String
     get() = value.substring(4, 8) + value.substring(9, 13) + value.substring(14, 15)
 
   /**
    * The check digit (last digit)
+   *
+   * ```kotlin
+   * import com.fortechteams.valuetypes.switzerland.SocialSecurityNumber
+   * import io.kotest.matchers.shouldBe
+   *
+   * fun test() {
+   *   val ssn = SocialSecurityNumber.fromString("756.1234.5678.97").getOrThrow()
+   *   ssn.checkDigit shouldBe "7"
+   * }
+   * ```
+   * <!--- KNIT example-switzerland-SocialSecurityNumber-04.kt -->
+   * <!--- TEST lines.isEmpty() -->
    */
   val checkDigit: String
     get() = value.substring(15)
@@ -61,7 +101,6 @@ value class SocialSecurityNumber private constructor(
   companion object {
     private const val REQUIRED_LENGTH = 13
     private const val COUNTRY_CODE = "756"
-    private const val DOT = "."
 
     /**
      * Creates a [SocialSecurityNumber] from a string.
@@ -69,7 +108,6 @@ value class SocialSecurityNumber private constructor(
      * The input can be provided with or without dots. All other characters are filtered out.
      * The method performs validation and formats the number according to the official format.
      *
-     * ## Validation Rules
      * - Must contain exactly 13 digits after filtering non-digits
      * - Must start with Swiss country code (756)
      * - Must have a valid EAN-13 checksum
@@ -90,7 +128,7 @@ value class SocialSecurityNumber private constructor(
      *   SocialSecurityNumber.fromString("756.1234.5678.98").isFailure shouldBe true // Invalid checksum
      * }
      * ```
-     * <!--- KNIT example-SocialSecurityNumber-02.kt -->
+     * <!--- KNIT example-switzerland-SocialSecurityNumber-05.kt -->
      * <!--- TEST lines.isEmpty() -->
      */
     fun fromString(value: String): Result<SocialSecurityNumber> = runCatching {
@@ -143,6 +181,10 @@ value class SocialSecurityNumber private constructor(
     }
 
     private fun formatWithDots(digits: String): String =
-      "${digits.substring(0, 3)}$DOT${digits.substring(3, 7)}$DOT${digits.substring(7, 11)}$DOT${digits.substring(11)}"
+      "${digits.substring(0, 3)}.${digits.substring(3, 7)}.${digits.substring(7, 11)}.${
+        digits.substring(
+          11
+        )
+      }"
   }
 }

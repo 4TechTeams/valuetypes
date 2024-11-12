@@ -27,12 +27,10 @@ plugins {
 dependencies {
   kover(project(":core"))
   kover(project(":switzerland"))
-  kover(project(":person"))
   kover(project(":network"))
 
   dokka(project(":core"))
   dokka(project(":switzerland"))
-  dokka(project(":person"))
   dokka(project(":network"))
 }
 

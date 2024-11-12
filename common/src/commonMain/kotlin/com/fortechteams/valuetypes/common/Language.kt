@@ -699,8 +699,6 @@ enum class Language(
     scriptDirection = ScriptDirection.LTR
   ),
 
-
-
   LAO(
     twoLetterCode = "lo",
     threeLetterCode = "lao",
@@ -1434,46 +1432,6 @@ enum class Language(
     threeLetterCode = "zul",
     nativeName = "isiZulu",
     englishName = "Zulu",
-    scriptDirection = ScriptDirection.LTR
-  ),
-
-  SICILIAN(
-    twoLetterCode = "scn",
-    threeLetterCode = "scn",
-    nativeName = "Sicilianu",
-    englishName = "Sicilian",
-    scriptDirection = ScriptDirection.LTR
-  ),
-
-  KOMI_ZYRIAN(
-    twoLetterCode = "kv",
-    threeLetterCode = "kom",
-    nativeName = "Коми-зырян",
-    englishName = "Komi-Zyrian",
-    scriptDirection = ScriptDirection.LTR
-  ),
-
-  KOMI_PERMYAK(
-    twoLetterCode = "kv",
-    threeLetterCode = "koi",
-    nativeName = "Коми-пермяцкӧй",
-    englishName = "Komi-Permyak",
-    scriptDirection = ScriptDirection.LTR
-  ),
-
-  OLD_CHURCH_SLAVONIC(
-    twoLetterCode = "cu",
-    threeLetterCode = "chu",
-    nativeName = "Ѩзыкъ словѣньскъ",
-    englishName = "Old Church Slavonic",
-    scriptDirection = ScriptDirection.LTR
-  ),
-
-  SIKSIKA(
-    twoLetterCode = "bla",
-    threeLetterCode = "bla",
-    nativeName = "ᓱᖽᐧᖿ",
-    englishName = "Siksika",
     scriptDirection = ScriptDirection.LTR
   );
 

@@ -5,7 +5,7 @@ import kotlin.jvm.JvmInline
 /**
  * Represents an IPv4 address as a value class wrapping an unsigned 32-bit integer.
  *
- * <!--- TEST_NAME IPv4AddressKnitTest -->
+ * <!--- TEST_NAME NetworkIPv4AddressKnitTest -->
  *
  * This implementation provides a memory-efficient way to handle IPv4 addresses while
  * ensuring type safety and offering convenient conversion methods.
@@ -36,7 +36,7 @@ import kotlin.jvm.JvmInline
  *   IPv4Address.LOCALHOST.toString() shouldBe "127.0.0.1"
  * }
  * ```
- * <!--- KNIT example-IPv4Address-01.kt -->
+ * <!--- KNIT example-network-IPv4Address-01.kt -->
  * <!--- TEST lines.isEmpty() -->
  *
  * ## See Also
@@ -68,7 +68,7 @@ value class IPv4Address private constructor(private val value: UInt) {
    *   addr.octet1 shouldBe 192u.toUByte()
    * }
    * ```
-   * <!--- KNIT example-IPv4Address-02.kt -->
+   * <!--- KNIT example-network-IPv4Address-02.kt -->
    * <!--- TEST lines.isEmpty() -->
    */
   val octet1: UByte get() = ((value shr 24) and 0xFFu).toUByte()
@@ -85,7 +85,7 @@ value class IPv4Address private constructor(private val value: UInt) {
    *   addr.octet2 shouldBe 168u.toUByte()
    * }
    * ```
-   * <!--- KNIT example-IPv4Address-03.kt -->
+   * <!--- KNIT example-network-IPv4Address-03.kt -->
    * <!--- TEST lines.isEmpty() -->
    */
   val octet2: UByte get() = ((value shr 16) and 0xFFu).toUByte()
@@ -102,7 +102,7 @@ value class IPv4Address private constructor(private val value: UInt) {
    *   addr.octet3 shouldBe 1u.toUByte()
    * }
    * ```
-   * <!--- KNIT example-IPv4Address-04.kt -->
+   * <!--- KNIT example-network-IPv4Address-04.kt -->
    * <!--- TEST lines.isEmpty() -->
    */
   val octet3: UByte get() = ((value shr 8) and 0xFFu).toUByte()
@@ -119,7 +119,7 @@ value class IPv4Address private constructor(private val value: UInt) {
    *   addr.octet4 shouldBe 1u.toUByte()
    * }
    * ```
-   * <!--- KNIT example-IPv4Address-05.kt -->
+   * <!--- KNIT example-network-IPv4Address-05.kt -->
    * <!--- TEST lines.isEmpty() -->
    */
   val octet4: UByte get() = (value and 0xFFu).toUByte()
@@ -136,7 +136,7 @@ value class IPv4Address private constructor(private val value: UInt) {
    *   addr.toString() shouldBe "192.168.1.1"
    * }
    * ```
-   * <!--- KNIT example-IPv4Address-06.kt -->
+   * <!--- KNIT example-network-IPv4Address-06.kt -->
    * <!--- TEST lines.isEmpty() -->
    */
   override fun toString(): String = "$octet1.$octet2.$octet3.$octet4"
@@ -154,7 +154,7 @@ value class IPv4Address private constructor(private val value: UInt) {
    *   addr.toUInt() shouldBe expected
    * }
    * ```
-   * <!--- KNIT example-IPv4Address-07.kt -->
+   * <!--- KNIT example-network-IPv4Address-07.kt -->
    * <!--- TEST lines.isEmpty() -->
    */
   fun toUInt(): UInt = value
@@ -188,7 +188,7 @@ value class IPv4Address private constructor(private val value: UInt) {
    *   }
    * }
    * ```
-   * <!--- KNIT example-IPv4Address-08.kt -->
+   * <!--- KNIT example-network-IPv4Address-08.kt -->
    * <!--- TEST lines.isEmpty() -->
    */
   fun isPrivate(): Boolean = when {
@@ -237,7 +237,7 @@ value class IPv4Address private constructor(private val value: UInt) {
    *   }
    * }
    * ```
-   * <!--- KNIT example-IPv4Address-09.kt -->
+   * <!--- KNIT example-network-IPv4Address-09.kt -->
    * <!--- TEST lines.isEmpty() -->
    */
   fun networkClass(): NetworkClass = when (octet1.toInt()) {
@@ -265,7 +265,7 @@ value class IPv4Address private constructor(private val value: UInt) {
      *   IPv4Address.fromString("192.168.1.256").isFailure shouldBe true
      * }
      * ```
-     * <!--- KNIT example-IPv4Address-10.kt -->
+     * <!--- KNIT example-network-IPv4Address-10.kt -->
      * <!--- TEST lines.isEmpty() -->
      */
     fun fromString(ip: String): Result<IPv4Address> =
@@ -296,7 +296,7 @@ value class IPv4Address private constructor(private val value: UInt) {
      *   IPv4Address.fromOctets(192, 168, 1, 256).isFailure shouldBe true
      * }
      * ```
-     * <!--- KNIT example-IPv4Address-11.kt -->
+     * <!--- KNIT example-network-IPv4Address-11.kt -->
      * <!--- TEST lines.isEmpty() -->
      */
     fun fromOctets(a: Int, b: Int, c: Int, d: Int): Result<IPv4Address> = runCatching {
@@ -330,7 +330,7 @@ value class IPv4Address private constructor(private val value: UInt) {
      *   addr.getOrThrow().toString() shouldBe "192.168.1.1"
      * }
      * ```
-     * <!--- KNIT example-IPv4Address-12.kt -->
+     * <!--- KNIT example-network-IPv4Address-12.kt -->
      * <!--- TEST lines.isEmpty() -->
      */
     fun fromOctets(a: UByte, b: UByte, c: UByte, d: UByte): Result<IPv4Address> =
@@ -350,7 +350,7 @@ value class IPv4Address private constructor(private val value: UInt) {
      *   addr.getOrThrow().toString() shouldBe "192.168.1.1"
      * }
      * ```
-     * <!--- KNIT example-IPv4Address-13.kt -->
+     * <!--- KNIT example-network-IPv4Address-13.kt -->
      * <!--- TEST lines.isEmpty() -->
      */
     fun fromUInt(value: UInt): Result<IPv4Address> =

@@ -4,12 +4,9 @@ $dokka.linkExtension:html
 module:core
 com.fortechteams.valuetypes.core
 com.fortechteams.valuetypes.core.exception
-com.fortechteams.valuetypes.person
+com.fortechteams.valuetypes.core.util
 module:network
 com.fortechteams.valuetypes.network
 com.fortechteams.valuetypes.network.exception
-module:person
-com.fortechteams.valuetypes.person
-com.fortechteams.valuetypes.person.exception
-com.fortechteams.valuetypes.person.switzerland
-com.fortechteams.valuetypes.person.usa
+module:switzerland
+com.fortechteams.valuetypes.switzerland

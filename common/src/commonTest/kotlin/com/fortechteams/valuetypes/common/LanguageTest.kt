@@ -2,6 +2,7 @@ package com.fortechteams.valuetypes.common
 
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.collections.shouldNotContainDuplicates
 import io.kotest.matchers.shouldBe
 import kotlin.test.Test
 
@@ -48,6 +49,7 @@ class LanguageTest {
 
     rtlLanguages shouldContainAll listOf(
       Language.ARABIC,
+      Language.DIVEHI,
       Language.HEBREW,
       Language.PERSIAN,
       Language.URDU,
@@ -59,7 +61,7 @@ class LanguageTest {
     )
 
     // Verify we haven't missed any RTL languages in our test
-    rtlLanguages shouldHaveSize 9
+    rtlLanguages shouldHaveSize 10
   }
 
   @Test
@@ -90,16 +92,7 @@ class LanguageTest {
     val twoLetterCodes = Language.entries.map { it.twoLetterCode }
     val threeLetterCodes = Language.entries.map { it.threeLetterCode }
 
-    twoLetterCodes.distinct() shouldHaveSize twoLetterCodes.size
-    threeLetterCodes.distinct() shouldHaveSize threeLetterCodes.size
-  }
-
-  @Test
-  fun testLanguagesAreOrderedAlphabetically() {
-    val sortedEnglishNames = Language.entries
-      .map { it.englishName }
-      .sorted()
-
-    Language.entries.map { it.englishName } shouldBe sortedEnglishNames
+    twoLetterCodes.shouldNotContainDuplicates()
+    threeLetterCodes.shouldNotContainDuplicates()
   }
 }

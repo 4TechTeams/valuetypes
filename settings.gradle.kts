@@ -22,9 +22,7 @@ include(
   ":common",
   ":core",
   ":switzerland",
-  ":usa",
   ":library",
-  ":person",
   ":network",
   ":examples"
 )
