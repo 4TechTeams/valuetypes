@@ -19,6 +19,7 @@ includeBuild("convention-plugins")
 
 // libs
 include(
+  ":core",
   ":library",
   ":person",
   ":network",

@@ -1,84 +1,77 @@
-package com.fortechteams.valuetypes.person
+package com.fortechteams.valuetypes.core
 
 import com.fortechteams.valuetypes.core.exception.InvalidNameException
-import com.fortechteams.valuetypes.core.isPrintable
+import com.fortechteams.valuetypes.core.util.isPrintable
 import kotlin.jvm.JvmInline
 
 /**
- * Maximum length for first names according to German naming law (Namensrecht).
- * This limit is set based on practical considerations in German civil registry offices.
- */
-const val MAX_LENGTH = 1000
-
-/**
- * Represents any name of a natural person
+ * Base interface for name types in the system.
  *
- * Serves as base class for [FirstName] and [LastName]
+ * <!--- TEST_NAME CoreNameKnitTest -->
  *
- * <!--- TEST_NAME NameKnitTest -->
+ * Provides common functionality for [FirstName] and [LastName] while ensuring
+ * type safety through sealed interface design.
+ *
+ * @property value The string representation of the name
  */
 sealed interface Name {
   val value: String
+
+  companion object {
+    /**
+     * Maximum length for names according to German naming law (Namensrecht).
+     * This limit is set based on practical considerations in German civil registry offices.
+     */
+    const val MAX_LENGTH = 1000
+  }
 }
 
 /**
  * Represents a person's first name as a validated value class.
  *
- * This implementation provides a type-safe way to handle first names while ensuring
- * basic validation rules and proper formatting.
+ * <!--- TEST_NAME CoreFirstNameKnitTest -->
+ *
+ * A type-safe implementation for handling first names that ensures validation rules
+ * based on German naming law constraints, including maximum length and character restrictions.
  *
  * ## Example
  *
  * ```kotlin
- * import com.fortechteams.valuetypes.person.FirstName
+ * import com.fortechteams.valuetypes.core.FirstName
  * import io.kotest.matchers.shouldBe
- * import io.kotest.matchers.types.shouldBeInstanceOf
  *
  * fun test() {
- *   // Create valid first name
- *   val name = FirstName.of("John").getOrThrow()
+ *   // Create first name
+ *   val name1 = FirstName.of("John").getOrThrow()
+ *   val name2 = FirstName.of("John").getOrThrow()
  *
- *   // String representation
- *   name.toString() shouldBe "John"
+ *   // Value equality
+ *   name1 shouldBe name2
  *
- *   // Validation handles whitespace
- *   FirstName.of("  Mary  ").getOrThrow().toString() shouldBe "Mary"
+ *   // Normalization
+ *   val trimmed = FirstName.of("  John  ").getOrThrow()
+ *   trimmed.toString() shouldBe "John"
  *
- *   // Validation fails for empty names
- *   FirstName.of("").isFailure shouldBe true
- *
- *   // Validation fails for names with numbers
- *   FirstName.of("John2").isFailure shouldBe true
- *
- *   // Validation fails for non-printable characters
- *   FirstName.of("John\u0000").isFailure shouldBe true
- *
- *   // Handles special characters correctly
- *   FirstName.of("Mary-Jane").getOrThrow().toString() shouldBe "Mary-Jane"
- *   FirstName.of("O'Connor").getOrThrow().toString() shouldBe "O'Connor"
+ *   // Special characters
+ *   val special = FirstName.of("Mary-Jane").getOrThrow()
+ *   special.toString() shouldBe "Mary-Jane"
  * }
  * ```
- * <!--- KNIT example-FirstName-01.kt -->
+ * <!--- KNIT example-core-FirstName-01.kt -->
  * <!--- TEST lines.isEmpty() -->
  *
  * ## Validation Rules
  *
- * The following validation rules are applied:
- * - Must not be blank
- * - Must not exceed [MAX_LENGTH] characters after trimming
- * - Must only contain printable characters
- * - Must not contain numbers
- * - Leading and trailing whitespace is removed
- * - Special characters (hyphens, apostrophes) are preserved
- *
- * ## Common Use Cases
- *
- * This class is typically used in:
- * - User registration forms
- * - Profile management
- * - Name formatting and validation
+ * | Rule          | Description                          | Example                   |
+ * |---------------|--------------------------------------|---------------------------|
+ * | Not blank     | Must contain non-whitespace chars    | "John" ✓, "" ✗           |
+ * | Length limit  | Max [NAME_MAX_LENGTH] after trim          | "John" ✓, [1001 chars] ✗ |
+ * | Characters    | Only printable, no numbers           | "Mary-Jane" ✓, "John2" ✗ |
+ * | Whitespace    | Auto-trimmed from start/end         | " John " → "John"        |
+ * | Special chars | Hyphens and apostrophes allowed     | "Mary-Jane" ✓, "O'Neill" ✓|
  *
  * @property value The internal string representation of the first name
+ * @throws InvalidNameException when validation fails
  */
 @JvmInline
 value class FirstName private constructor(
@@ -90,11 +83,31 @@ value class FirstName private constructor(
     /**
      * Creates a new [FirstName] instance after applying validation rules.
      *
-     * @param value The string to create the first name from
-     * @return A [Result] containing either the valid [FirstName] or a failure with [InvalidNameException]
+     * ```kotlin
+     * import com.fortechteams.valuetypes.core.FirstName
+     * import io.kotest.matchers.shouldBe
+     *
+     * fun test() {
+     *   // Valid cases
+     *   val simple = FirstName.of("John")
+     *   simple.isSuccess shouldBe true
+     *
+     *   val compound = FirstName.of("Mary-Jane")
+     *   compound.isSuccess shouldBe true
+     *
+     *   // Invalid cases with error messages
+     *   val empty = FirstName.of("")
+     *   empty.exceptionOrNull()?.message shouldBe "Invalid name:  - Cannot be blank"
+     *
+     *   val withNumber = FirstName.of("John2")
+     *   withNumber.exceptionOrNull()?.message shouldBe "Invalid name: John2 - Cannot contain numbers"
+     * }
+     * ```
+     * <!--- KNIT example-core-FirstName-02.kt -->
+     * <!--- TEST lines.isEmpty() -->
      */
     fun of(value: String): Result<FirstName> =
-      validateName(value, MAX_LENGTH)
+      validateName(value, Name.MAX_LENGTH)
         .map { FirstName(it) }
   }
 
@@ -104,63 +117,47 @@ value class FirstName private constructor(
 /**
  * Represents a person's last name as a validated value class.
  *
- * This implementation provides a type-safe way to handle last names while ensuring
- * basic validation rules and proper formatting.
+ * <!--- TEST_NAME CoreLastNameKnitTest -->
+ *
+ * A type-safe implementation for handling last names that ensures validation rules
+ * based on German naming law constraints, including maximum length and character restrictions.
+ * Additionally allows spaces for compound names.
  *
  * ## Example
  *
  * ```kotlin
- * import com.fortechteams.valuetypes.person.LastName
+ * import com.fortechteams.valuetypes.core.LastName
  * import io.kotest.matchers.shouldBe
- * import io.kotest.matchers.types.shouldBeInstanceOf
  *
  * fun test() {
- *   // Create valid last name
+ *   // Basic usage
  *   val name = LastName.of("Smith").getOrThrow()
- *
- *   // String representation
  *   name.toString() shouldBe "Smith"
  *
- *   // Validation handles whitespace
- *   LastName.of("  Jones  ").getOrThrow().toString() shouldBe "Jones"
+ *   // Compound names
+ *   val compound = LastName.of("van der Berg").getOrThrow()
+ *   compound.toString() shouldBe "van der Berg"
  *
- *   // Validation fails for empty names
- *   LastName.of("").isFailure shouldBe true
- *
- *   // Validation fails for names with numbers
- *   LastName.of("Smith2").isFailure shouldBe true
- *
- *   // Validation fails for non-printable characters
- *   LastName.of("Smith\u0000").isFailure shouldBe true
- *
- *   // Handles compound names correctly
- *   LastName.of("Smith-Jones").getOrThrow().toString() shouldBe "Smith-Jones"
- *   LastName.of("O'Brien").getOrThrow().toString() shouldBe "O'Brien"
- *   LastName.of("van der Berg").getOrThrow().toString() shouldBe "van der Berg"
+ *   // Special characters
+ *   val hyphenated = LastName.of("Smith-Jones").getOrThrow()
+ *   hyphenated.toString() shouldBe "Smith-Jones"
  * }
  * ```
- * <!--- KNIT example-LastName-01.kt -->
+ * <!--- KNIT example-core-LastName-01.kt -->
  * <!--- TEST lines.isEmpty() -->
  *
  * ## Validation Rules
  *
- * The following validation rules are applied:
- * - Must not be blank
- * - Must not exceed [MAX_LENGTH] characters after trimming
- * - Must only contain printable characters
- * - Must not contain numbers
- * - Leading and trailing whitespace is removed
- * - Special characters (hyphens, apostrophes) are preserved
- * - Spaces are allowed for compound names (e.g., "van der Berg")
- *
- * ## Common Use Cases
- *
- * This class is typically used in:
- * - User registration forms
- * - Profile management
- * - Name formatting and validation
+ * | Rule          | Description                          | Example                      |
+ * |---------------|--------------------------------------|------------------------------|
+ * | Not blank     | Must contain non-whitespace chars    | "Smith" ✓, "" ✗             |
+ * | Length limit  | Max [NAME_MAX_LENGTH] after trim          | "Smith" ✓, [1001 chars] ✗   |
+ * | Characters    | Only printable, no numbers           | "van der Berg" ✓, "Smith2" ✗|
+ * | Whitespace    | Auto-trimmed edges, allowed inside   | "van der Berg" ✓            |
+ * | Special chars | Hyphens, apostrophes, spaces allowed | "Smith-Jones" ✓, "O'Brien" ✓|
  *
  * @property value The internal string representation of the last name
+ * @throws InvalidNameException when validation fails
  */
 @JvmInline
 value class LastName private constructor(
@@ -172,11 +169,31 @@ value class LastName private constructor(
     /**
      * Creates a new [LastName] instance after applying validation rules.
      *
-     * @param value The string to create the last name from
-     * @return A [Result] containing either the valid [LastName] or a failure with [InvalidNameException]
+     * ```kotlin
+     * import com.fortechteams.valuetypes.core.LastName
+     * import io.kotest.matchers.shouldBe
+     *
+     * fun test() {
+     *   // Valid cases
+     *   val simple = LastName.of("Smith")
+     *   simple.isSuccess shouldBe true
+     *
+     *   val compound = LastName.of("van der Berg")
+     *   compound.isSuccess shouldBe true
+     *
+     *   // Invalid cases with error messages
+     *   val empty = LastName.of("")
+     *   empty.exceptionOrNull()?.message shouldBe "Invalid name:  - Cannot be blank"
+     *
+     *   val withNumber = LastName.of("Smith2")
+     *   withNumber.exceptionOrNull()?.message shouldBe "Invalid name: Smith2 - Cannot contain numbers"
+     * }
+     * ```
+     * <!--- KNIT example-core-LastName-02.kt -->
+     * <!--- TEST lines.isEmpty() -->
      */
     fun of(value: String): Result<LastName> =
-      validateName(value, MAX_LENGTH)
+      validateName(value, Name.MAX_LENGTH)
         .map { LastName(it) }
   }
 

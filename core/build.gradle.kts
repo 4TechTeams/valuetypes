@@ -10,13 +10,14 @@ kotlin {
   linuxX64()
   js {
     browser()
+    nodejs()
   }
 
   sourceSets {
 
     commonMain {
       dependencies {
-        implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
+        api(libs.kotlinx.datetime)
       }
     }
 
@@ -33,8 +34,9 @@ kotlin {
 
     jvmTest {
       dependencies {
-        implementation(libs.kotest.runner.junit5)
-        implementation(libs.kotlinx.knit.test)
+        implementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
+        implementation("org.junit.jupiter:junit-jupiter-engine:5.10.0")
+        implementation(libs.junit.jupiter.params)
       }
     }
   }

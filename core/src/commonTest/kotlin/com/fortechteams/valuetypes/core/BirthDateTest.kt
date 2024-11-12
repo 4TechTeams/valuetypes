@@ -1,14 +1,15 @@
-package com.fortechteams.valuetypes.person
+package com.fortechteams.valuetypes.core
 
 import io.kotest.matchers.shouldBe
-import java.time.LocalDate
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.todayIn
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 
 class BirthDateTest {
 
   @Test
-  fun `should create valid date from ISO string`() {
+  fun shouldCreateValidDateFromIsoString() {
     // Valid dates
     BirthDate.fromString("1990-01-15").isSuccess shouldBe true
     BirthDate.fromString("2000-12-31").isSuccess shouldBe true
@@ -20,7 +21,7 @@ class BirthDateTest {
   }
 
   @Test
-  fun `should create valid date from European format string`() {
+  fun shouldCreateValidDateFromEuropeanFormatString() {
     // Valid dates
     BirthDate.fromString("15.01.1990").isSuccess shouldBe true
     BirthDate.fromString("31.12.2000").isSuccess shouldBe true
@@ -30,7 +31,7 @@ class BirthDateTest {
   }
 
   @Test
-  fun `should create valid date from slash format strings`() {
+  fun shouldCreateValidDateFromSlashFormatStrings() {
     // YYYY/MM/DD format
     BirthDate.fromString("1990/01/15").isSuccess shouldBe true
     BirthDate.fromString("1990/01/15").getOrNull().toString() shouldBe "1990-01-15"
@@ -41,7 +42,7 @@ class BirthDateTest {
   }
 
   @Test
-  fun `should fail for invalid string formats`() {
+  fun shouldFailForInvalidStringFormats() {
     // Invalid formats
     BirthDate.fromString("").isFailure shouldBe true
     BirthDate.fromString("1990-13-01").isFailure shouldBe true
@@ -63,8 +64,9 @@ class BirthDateTest {
   }
 
   @Test
-  fun `should fail for future dates`() {
-    val futureYear = LocalDate.now().year + 1
+  fun shouldFailForFutureDates() {
+    val futureYear = kotlinx.datetime.Clock.System.todayIn(kotlinx.datetime.TimeZone.currentSystemDefault())
+      .year + 1
 
     // Future dates in different formats
     BirthDate.fromString("$futureYear-01-01").isFailure shouldBe true
@@ -76,7 +78,7 @@ class BirthDateTest {
   }
 
   @Test
-  fun `should create valid date from year, month, day`() {
+  fun shouldCreateValidDateFromYearMonthDay() {
     // Valid cases
     val date = BirthDate.fromDate(1990, 1, 15).getOrNull()
     assertNotNull(date)
@@ -88,7 +90,7 @@ class BirthDateTest {
   }
 
   @Test
-  fun `should fail for invalid component values`() {
+  fun shouldFailForInvalidComponentValues() {
     // Invalid months
     BirthDate.fromDate(1990, 0, 15).isFailure shouldBe true
     BirthDate.fromDate(1990, 13, 15).isFailure shouldBe true
@@ -103,7 +105,7 @@ class BirthDateTest {
   }
 
   @Test
-  fun `should correctly handle leap years`() {
+  fun shouldCorrectlyHandleLeapYears() {
     // Valid leap year date
     BirthDate.fromDate(2000, 2, 29).isSuccess shouldBe true
 
@@ -113,18 +115,18 @@ class BirthDateTest {
   }
 
   @Test
-  fun `should correctly calculate age`() {
+  fun shouldCorrectlyCalculateAge() {
     val birthDate = BirthDate.fromDate(1990, 6, 15).getOrNull()
     assertNotNull(birthDate)
 
     // Test age calculation at specific dates
-    birthDate.getAgeAt(LocalDate.of(2000, 6, 14)) shouldBe 9
-    birthDate.getAgeAt(LocalDate.of(2000, 6, 15)) shouldBe 10
-    birthDate.getAgeAt(LocalDate.of(2000, 6, 16)) shouldBe 10
+    birthDate.getAgeAt(LocalDate(2000, 6, 14)) shouldBe 9
+    birthDate.getAgeAt(LocalDate(2000, 6, 15)) shouldBe 10
+    birthDate.getAgeAt(LocalDate(2000, 6, 16)) shouldBe 10
   }
 
   @Test
-  fun `should correctly extract components`() {
+  fun shouldCorrectlyExtractComponents() {
     val birthDate = BirthDate.fromDate(1990, 6, 15).getOrNull()
     assertNotNull(birthDate)
 
@@ -134,7 +136,7 @@ class BirthDateTest {
   }
 
   @Test
-  fun `should maintain value semantics`() {
+  fun shouldMaintainValueSemantics() {
     val date1 = BirthDate.fromDate(1990, 6, 15).getOrNull()
     val date2 = BirthDate.fromDate(1990, 6, 15).getOrNull()
     val date3 = BirthDate.fromDate(1990, 6, 16).getOrNull()
@@ -148,16 +150,31 @@ class BirthDateTest {
 
     // Different values should not be equal
     (date1 == date3) shouldBe false
+
+    // Verify hashCode consistency
+    date1.hashCode() shouldBe date2.hashCode()
   }
 
   @Test
-  fun `should handle historical dates`() {
+  fun shouldHandleConversionToAndFromLocalDate() {
+    val originalDate = LocalDate(1990, 6, 15)
+    val birthDate = BirthDate.fromLocalDate(originalDate).getOrNull()
+    assertNotNull(birthDate)
+
+    val roundTrip = birthDate.toLocalDate()
+    roundTrip shouldBe originalDate
+  }
+
+  @Test
+  fun shouldHandleHistoricalDates() {
     // Test various historical dates
     BirthDate.fromString("1800-01-01").isSuccess shouldBe true
     BirthDate.fromString("1753-01-01").isSuccess shouldBe true // Gregorian calendar adoption in many countries
-    BirthDate.fromString("0001-01-01").isSuccess shouldBe true // Minimum LocalDate year
 
     // Verify correct parsing of historical dates
     BirthDate.fromString("1753-01-01").getOrNull().toString() shouldBe "1753-01-01"
+
+    // Note: kotlinx.datetime supports dates from year 1 to year 999999
+    BirthDate.fromString("0001-01-01").isSuccess shouldBe true
   }
 }

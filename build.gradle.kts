@@ -25,9 +25,11 @@ plugins {
 }
 
 dependencies {
+  kover(project(":core"))
   kover(project(":person"))
   kover(project(":network"))
 
+  dokka(project(":core"))
   dokka(project(":person"))
   dokka(project(":network"))
 }

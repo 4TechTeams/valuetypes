@@ -1,4 +1,4 @@
-package com.fortechteams.valuetypes.core
+package com.fortechteams.valuetypes.core.util
 
 /**
  * Indicated if a character is printable

@@ -1,4 +1,4 @@
-package com.fortechteams.valuetypes.person
+package com.fortechteams.valuetypes.core
 
 import io.kotest.assertions.throwables.shouldNotThrowAny
 import io.kotest.matchers.result.shouldBeFailure
@@ -8,8 +8,9 @@ import io.kotest.matchers.string.shouldContain
 import kotlin.test.Test
 
 class LastNameTest {
+
   @Test
-  fun `should create valid last name`() {
+  fun shouldCreateValidLastName() {
     // when
     val result = LastName.of("Smith")
 
@@ -19,7 +20,7 @@ class LastNameTest {
   }
 
   @Test
-  fun `should trim whitespace`() {
+  fun shouldTrimWhitespace() {
     // when
     val result = LastName.of("  Smith  ")
 
@@ -29,7 +30,7 @@ class LastNameTest {
   }
 
   @Test
-  fun `should reject blank name`() {
+  fun shouldRejectBlankName() {
     // when
     val result = LastName.of("   ")
 
@@ -39,7 +40,7 @@ class LastNameTest {
   }
 
   @Test
-  fun `should reject empty name`() {
+  fun shouldRejectEmptyName() {
     // when
     val result = LastName.of("")
 
@@ -49,26 +50,26 @@ class LastNameTest {
   }
 
   @Test
-  fun `should reject name exceeding maximum length`() {
+  fun shouldRejectNameExceedingMaximumLength() {
     // when
-    val result = LastName.of("a".repeat(LastName.MAX_LENGTH + 1))
+    val result = LastName.of("a".repeat(Name.MAX_LENGTH + 1))
 
     // then
     result.shouldBeFailure()
-    result.exceptionOrNull()?.message shouldContain "Cannot exceed ${LastName.MAX_LENGTH} characters"
+    result.exceptionOrNull()?.message shouldContain "Cannot exceed ${Name.MAX_LENGTH} characters"
   }
 
   @Test
-  fun `should accept name at maximum length`() {
+  fun shouldAcceptNameAtMaximumLength() {
     // when
-    val result = LastName.of("a".repeat(LastName.MAX_LENGTH))
+    val result = LastName.of("a".repeat(Name.MAX_LENGTH))
 
     // then
     result.shouldBeSuccess()
   }
 
   @Test
-  fun `should reject name containing numbers`() {
+  fun shouldRejectNameContainingNumbers() {
     // when
     val result = LastName.of("Smith2")
 
@@ -78,7 +79,7 @@ class LastNameTest {
   }
 
   @Test
-  fun `should reject name containing control characters`() {
+  fun shouldRejectNameContainingControlCharacters() {
     // when
     val result = LastName.of("Smith\u0000")
 
@@ -88,7 +89,7 @@ class LastNameTest {
   }
 
   @Test
-  fun `should accept hyphenated names`() {
+  fun shouldAcceptHyphenatedNames() {
     // when
     val result = LastName.of("Smith-Jones")
 
@@ -98,7 +99,7 @@ class LastNameTest {
   }
 
   @Test
-  fun `should accept names with apostrophes`() {
+  fun shouldAcceptNamesWithApostrophes() {
     // when
     val result = LastName.of("O'Brien")
 
@@ -108,7 +109,7 @@ class LastNameTest {
   }
 
   @Test
-  fun `should accept compound names with spaces`() {
+  fun shouldAcceptCompoundNamesWithSpaces() {
     // given
     val compoundNames = listOf(
       "van der Berg",
@@ -127,7 +128,7 @@ class LastNameTest {
   }
 
   @Test
-  fun `should accept international characters`() {
+  fun shouldAcceptInternationalCharacters() {
     // given
     val internationalNames = listOf(
       // German
