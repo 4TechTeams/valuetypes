@@ -7,13 +7,12 @@ plugins {
 
 kotlin {
   jvm()
+  linuxX64()
+  js {
+    browser()
+  }
 
   sourceSets {
-
-    val jvmMain by getting {
-      dependencies {
-      }
-    }
 
     val commonTest by getting {
       dependencies {

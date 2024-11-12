@@ -31,13 +31,5 @@ kotlin {
         implementation(kotlin("test-annotations-common"))
       }
     }
-
-    jvmTest {
-      dependencies {
-        implementation("org.junit.jupiter:junit-jupiter-api:5.10.0")
-        implementation("org.junit.jupiter:junit-jupiter-engine:5.10.0")
-        implementation(libs.junit.jupiter.params)
-      }
-    }
   }
 }
