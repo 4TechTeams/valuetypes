@@ -1,4 +1,4 @@
-name: CI Build
+name: Build
 
 on:
   push:
@@ -54,7 +54,10 @@ jobs:
           cache-read-only: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/develop' }}
 
       - name: Build
+        run: ./gradlew clean build
+
+      - name: Test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew clean ktlintCheck check koverXmlReport sonar --info
+        run: ./gradlew check koverXmlReport sonar
