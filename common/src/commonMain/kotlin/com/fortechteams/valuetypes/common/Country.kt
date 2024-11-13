@@ -939,6 +939,14 @@ enum class Country(
     numericCode = 442
   ),
 
+  MACAO(
+    englishName = "Macao",
+    localLanguageName = "澳門",
+    alpha2Code = "MO",
+    alpha3Code = "MAC",
+    numericCode = 446
+  ),
+
   MADAGASCAR(
     englishName = "Madagascar",
     localLanguageName = "Madagasikara",
@@ -1177,6 +1185,14 @@ enum class Country(
     alpha2Code = "PK",
     alpha3Code = "PAK",
     numericCode = 586
+  ),
+
+  PALESTINE(
+    englishName = "Palestine",
+    localLanguageName = "فلسطين",
+    alpha2Code = "PS",
+    alpha3Code = "PSE",
+    numericCode = 275
   ),
 
   PALAU(
@@ -1473,6 +1489,14 @@ enum class Country(
     alpha2Code = "SY",
     alpha3Code = "SYR",
     numericCode = 760
+  ),
+
+  TAIWAN(
+    englishName = "Taiwan",
+    localLanguageName = "臺灣",
+    alpha2Code = "TW",
+    alpha3Code = "TWN",
+    numericCode = 158
   ),
 
   TAJIKISTAN(
