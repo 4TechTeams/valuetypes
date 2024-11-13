@@ -1,0 +1,12 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+module:core
+com.fortechteams.valuetypes.core
+com.fortechteams.valuetypes.core.exception
+com.fortechteams.valuetypes.core.util
+module:network
+com.fortechteams.valuetypes.network
+com.fortechteams.valuetypes.network.exception
+module:switzerland
+com.fortechteams.valuetypes.switzerland
