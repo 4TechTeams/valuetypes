@@ -1,6 +1,7 @@
 package com.fortechteams.valuetypes.switzerland
 
 import com.fortechteams.valuetypes.common.BaseSocialSecurityNumber
+import com.fortechteams.valuetypes.common.Country
 import com.fortechteams.valuetypes.common.exception.InvalidSocialSecurityNumberException
 import kotlin.jvm.JvmInline
 
@@ -100,7 +101,6 @@ value class SocialSecurityNumber private constructor(
 
   companion object {
     private const val REQUIRED_LENGTH = 13
-    private const val COUNTRY_CODE = "756"
 
     /**
      * Creates a [SocialSecurityNumber] from a string.
@@ -140,16 +140,16 @@ value class SocialSecurityNumber private constructor(
         throw InvalidSocialSecurityNumberException(
           value,
           "Must contain exactly $REQUIRED_LENGTH digits, found ${digits.length}",
-          Switzerland.englishName
+          Country.SWITZERLAND.englishName
         )
       }
 
       // Validate country code
-      if (!digits.startsWith(COUNTRY_CODE)) {
+      if (!digits.startsWith(Country.SWITZERLAND.numericCode.toString())) {
         throw InvalidSocialSecurityNumberException(
           value,
-          "Must start with Swiss country code $COUNTRY_CODE",
-          Switzerland.englishName
+          "Must start with Swiss country code ${Country.SWITZERLAND.numericCode}",
+          Country.SWITZERLAND.englishName
         )
       }
 
@@ -175,7 +175,7 @@ value class SocialSecurityNumber private constructor(
         throw InvalidSocialSecurityNumberException(
           originalValue,
           "Invalid checksum digit: expected $calculatedChecksum but found $checksum",
-          Switzerland.englishName
+          Country.SWITZERLAND.englishName
         )
       }
     }
