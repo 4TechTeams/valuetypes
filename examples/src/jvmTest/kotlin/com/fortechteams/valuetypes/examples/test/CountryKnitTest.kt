@@ -41,4 +41,8 @@ class CountryKnitTest {
     com.fotechteams.valuetypes.examples.exampleCommonCountry09.test()
   }
 
+  @Test fun exampleCommonCountry10() = runTest {
+    com.fotechteams.valuetypes.examples.exampleCommonCountry10.test()
+  }
+
 }

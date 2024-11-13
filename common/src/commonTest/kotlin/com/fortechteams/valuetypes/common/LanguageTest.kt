@@ -1,9 +1,12 @@
 package com.fortechteams.valuetypes.common
 
+import io.kotest.assertions.withClue
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotContainDuplicates
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNot
+import io.kotest.matchers.string.beBlank
 import kotlin.test.Test
 
 class LanguageTest {
@@ -65,34 +68,46 @@ class LanguageTest {
   }
 
   @Test
-  fun testAllLanguagesHaveValidIsoCodes() {
-    Language.entries.forEach { language ->
-      // Two-letter code should be exactly 2 characters
-      language.twoLetterCode.length shouldBe 2
-
-      // Three-letter code should be exactly 3 characters
-      language.threeLetterCode.length shouldBe 3
-
-      // Codes should be lowercase
-      language.twoLetterCode shouldBe language.twoLetterCode.lowercase()
-      language.threeLetterCode shouldBe language.threeLetterCode.lowercase()
-    }
-  }
-
-  @Test
-  fun testAllLanguagesHaveNonEmptyNames() {
-    Language.entries.forEach { language ->
-      language.nativeName.isNotBlank() shouldBe true
-      language.englishName.isNotBlank() shouldBe true
-    }
-  }
-
-  @Test
   fun testNoDuplicateIsoCodesExist() {
-    val twoLetterCodes = Language.entries.map { it.twoLetterCode }
+    val twoLetterCodes = Language.entries.filter { it.twoLetterCode !== null }.map { it.twoLetterCode }
     val threeLetterCodes = Language.entries.map { it.threeLetterCode }
 
     twoLetterCodes.shouldNotContainDuplicates()
     threeLetterCodes.shouldNotContainDuplicates()
+  }
+
+  @Test
+  fun languageNameCompliance() {
+    Language.entries.forEach { language ->
+      withClue("For $language") {
+        language.nativeName shouldNot beBlank()
+        language.englishName shouldNot beBlank()
+      }
+    }
+  }
+
+  @Test
+  fun languageCodeCompliance() {
+    Language.entries.forEach { language ->
+      withClue("For $language.twoLetterCode") {
+        // Two-letter code should be exactly 2 characters (if not null)
+        language.twoLetterCode?.let {
+          it.length shouldBe 2
+        }
+
+        // Codes should be lowercase
+        language.twoLetterCode?.let {
+          it shouldBe it.lowercase()
+        }
+      }
+
+      withClue("For $language.threeLetterCode") {
+        // Three-letter code should be exactly 3 characters
+        language.threeLetterCode.length shouldBe 3
+
+        // Codes should be lowercase
+        language.threeLetterCode shouldBe language.threeLetterCode.lowercase()
+      }
+    }
   }
 }

@@ -1,5 +1,7 @@
 package com.fortechteams.valuetypes.common
 
+import io.kotest.matchers.collections.shouldContainAll
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.shouldBe
 import kotlin.test.Test
 
@@ -157,5 +159,36 @@ class CountryTest {
     // As of 2024, there are 193 UN member states plus Vatican City and Palestine
     // Adjust this number based on your implementation's scope
     Country.entries.size shouldBe 195
+  }
+
+  @Test
+  fun shouldHaveNonEmptySpokenLanguages() {
+    Country.entries.forEach { country ->
+      country.spokenLanguages.shouldNotBeEmpty()
+    }
+  }
+
+  @Test
+  fun shouldHaveExpectedLanguagesForMultilingualCountries() {
+    // Test well-known multilingual countries
+    Country.SWITZERLAND.spokenLanguages shouldContainAll listOf(
+      Language.GERMAN,
+      Language.FRENCH,
+      Language.ITALIAN,
+      Language.ROMANSH
+    )
+
+    Country.SINGAPORE.spokenLanguages shouldContainAll listOf(
+      Language.ENGLISH,
+      Language.MALAY,
+      Language.CHINESE,
+      Language.TAMIL
+    )
+
+    Country.BELGIUM.spokenLanguages shouldContainAll listOf(
+      Language.DUTCH,
+      Language.FRENCH,
+      Language.GERMAN
+    )
   }
 }

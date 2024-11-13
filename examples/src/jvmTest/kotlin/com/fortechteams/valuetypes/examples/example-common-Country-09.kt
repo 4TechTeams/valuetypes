@@ -5,9 +5,7 @@ import com.fortechteams.valuetypes.common.Country
 import io.kotest.matchers.shouldBe
 
 fun test() {
-  Country.fromName("Switzerland") shouldBe Country.SWITZERLAND
-  Country.fromName("Schweiz") shouldBe Country.SWITZERLAND
-  Country.fromName("Deutschland") shouldBe Country.GERMANY
-  Country.fromName(" France ") shouldBe Country.FRANCE
-  Country.fromName("invalid") shouldBe null
+  Country.fromAlpha3Code("FRA") shouldBe Country.FRANCE
+  Country.fromAlpha3Code("fra") shouldBe Country.FRANCE
+  Country.fromAlpha3Code("invalid") shouldBe null
 }
