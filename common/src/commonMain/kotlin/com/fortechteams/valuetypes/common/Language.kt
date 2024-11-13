@@ -28,7 +28,7 @@ package com.fortechteams.valuetypes.common
  * <!--- TEST lines.isEmpty() -->
  */
 enum class Language(
-  val twoLetterCode: String,
+  val twoLetterCode: String?,
   val threeLetterCode: String,
   val nativeName: String,
   val englishName: String,
@@ -368,6 +368,14 @@ enum class Language(
     threeLetterCode = "fin",
     nativeName = "Suomi",
     englishName = "Finnish",
+    scriptDirection = ScriptDirection.LTR
+  ),
+
+  FILIPINO(
+    twoLetterCode = null,
+    threeLetterCode = "fil",
+    nativeName = "Filipino",
+    englishName = "Filipino",
     scriptDirection = ScriptDirection.LTR
   ),
 
@@ -875,6 +883,14 @@ enum class Language(
     scriptDirection = ScriptDirection.LTR
   ),
 
+  NORTHERN_SOTHO(
+    twoLetterCode = null,
+    threeLetterCode = "nso",
+    nativeName = "Sesotho sa Leboa",
+    englishName = "Northern Sotho",
+    scriptDirection = ScriptDirection.LTR
+  ),
+
   NORTHERN_SAMI(
     twoLetterCode = "se",
     threeLetterCode = "sme",
@@ -1235,6 +1251,14 @@ enum class Language(
     scriptDirection = ScriptDirection.LTR
   ),
 
+  TETUM(
+    twoLetterCode = null,
+    threeLetterCode = "tet",
+    nativeName = "Tetun",
+    englishName = "Tetum",
+    scriptDirection = ScriptDirection.LTR
+  ),
+
   THAI(
     twoLetterCode = "th",
     threeLetterCode = "tha",
@@ -1251,6 +1275,14 @@ enum class Language(
     scriptDirection = ScriptDirection.LTR
   ),
 
+  TOK_PISIN(
+    twoLetterCode = null,
+    threeLetterCode = "tpi",
+    nativeName = "Tok Pisin",
+    englishName = "Tok Pisin",
+    scriptDirection = ScriptDirection.LTR
+  ),
+
   TIGRINYA(
     twoLetterCode = "ti",
     threeLetterCode = "tir",
@@ -1259,7 +1291,7 @@ enum class Language(
     scriptDirection = ScriptDirection.LTR
   ),
 
-  TONGA(
+  TONGAN(
     twoLetterCode = "to",
     threeLetterCode = "ton",
     nativeName = "Lea faka-Tonga",
@@ -1288,6 +1320,14 @@ enum class Language(
     threeLetterCode = "tur",
     nativeName = "Türkçe",
     englishName = "Turkish",
+    scriptDirection = ScriptDirection.LTR
+  ),
+
+  TUVALUAN(
+    twoLetterCode = null,
+    threeLetterCode = "tvl",
+    nativeName = "Te Ggana Tuuvalu",
+    englishName = "Tuvaluan",
     scriptDirection = ScriptDirection.LTR
   ),
 

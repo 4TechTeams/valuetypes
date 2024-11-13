@@ -15,8 +15,6 @@ kotlin {
       dependencies {
         implementation(libs.kotlin.test)
         implementation(libs.kotest.assertions.core)
-        implementation(libs.kotest.framework.engine)
-        implementation(libs.kotest.framework.datatest)
         implementation(kotlin("test-common"))
         implementation(kotlin("test-annotations-common"))
       }
