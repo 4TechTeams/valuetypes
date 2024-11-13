@@ -26,10 +26,12 @@ plugins {
 
 dependencies {
   kover(project(":core"))
+  kover(project(":common"))
   kover(project(":switzerland"))
   kover(project(":network"))
 
   dokka(project(":core"))
+  dokka(project(":common"))
   dokka(project(":switzerland"))
   dokka(project(":network"))
 }
