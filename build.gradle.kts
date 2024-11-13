@@ -40,7 +40,7 @@ rootProject.plugins.withType<org.jetbrains.kotlin.gradle.targets.js.yarn.YarnPlu
 
 sonar {
   properties {
-    property("sonar.projectKey", "4techteams_valuetypes")
+    property("sonar.projectKey", "4TechTeams_valuetypes")
     property("sonar.organization", "4techteams")
     property("sonar.host.url", "https://sonarcloud.io")
     property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/kover/report.xml")
