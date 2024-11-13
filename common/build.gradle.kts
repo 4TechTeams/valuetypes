@@ -8,10 +8,6 @@ plugins {
 kotlin {
   jvm()
   linuxX64()
-  js {
-    browser()
-    nodejs()
-  }
 
   sourceSets {
 
