@@ -6,5 +6,5 @@ import io.kotest.matchers.shouldBe
 
 fun test() {
   val ssn = SocialSecurityNumber.fromString("756.1234.5678.97").getOrThrow()
-  ssn.personalNumber shouldBe "12345678"
+  ssn.personalNumber shouldBe "123456789"
 }

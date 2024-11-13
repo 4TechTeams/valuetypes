@@ -3,18 +3,19 @@ package com.fotechteams.valuetypes.examples.exampleCoreInvalidBirthDateException
 
 import com.fortechteams.valuetypes.core.BirthDate
 import com.fortechteams.valuetypes.core.exception.InvalidBirthDateException
-import io.kotest.matchers.shouldBe
+import io.kotest.matchers.should
+import io.kotest.matchers.types.beInstanceOf
 
 fun test() {
   // Future date
   val futureResult = BirthDate.fromString("2525-01-01")
-  futureResult.exceptionOrNull() shouldBe instanceof<InvalidBirthDateException>()
+  futureResult.exceptionOrNull() should beInstanceOf<InvalidBirthDateException>()
 
   // Invalid format
   val invalidResult = BirthDate.fromString("not-a-date")
-  invalidResult.exceptionOrNull() shouldBe instanceof<InvalidBirthDateException>()
+  invalidResult.exceptionOrNull() should beInstanceOf<InvalidBirthDateException>()
 
   // Invalid date
   val invalidDateResult = BirthDate.fromDate(2000, 13, 1)
-  invalidDateResult.exceptionOrNull() shouldBe instanceof<InvalidBirthDateException>()
+  invalidDateResult.exceptionOrNull() should beInstanceOf<InvalidBirthDateException>()
 }

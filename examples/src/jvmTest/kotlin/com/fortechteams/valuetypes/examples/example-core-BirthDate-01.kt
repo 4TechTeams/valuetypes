@@ -24,4 +24,3 @@ fun test() {
   val referenceDate = LocalDate(2024, 1, 15)
   birthDate1.getAgeAt(referenceDate) shouldBe 34
 }
-}

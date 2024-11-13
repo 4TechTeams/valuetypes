@@ -45,7 +45,6 @@ import kotlin.jvm.JvmSynthetic
  *   val referenceDate = LocalDate(2024, 1, 15)
  *   birthDate1.getAgeAt(referenceDate) shouldBe 34
  * }
- * }
  * ```
  * <!--- KNIT example-core-BirthDate-01.kt -->
  * <!--- TEST lines.isEmpty() -->
@@ -321,7 +320,12 @@ value class BirthDate private constructor(
      */
     @JvmSynthetic
     fun fromDate(year: Int, month: Int, day: Int): Result<BirthDate> = runCatching {
-      fromLocalDate(LocalDate(year, month, day)).getOrThrow()
+      val date = try {
+        LocalDate(year, month, day)
+      } catch (e: Throwable) {
+        throw InvalidBirthDateException("(year=$year,month=$month,day=$day)", e)
+      }
+      fromLocalDate(date).getOrThrow()
     }
 
     /**
