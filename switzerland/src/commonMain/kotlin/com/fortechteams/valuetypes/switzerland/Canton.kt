@@ -1,5 +1,7 @@
 package com.fortechteams.valuetypes.switzerland
 
+import com.fortechteams.valuetypes.common.Country
+
 /**
  * Represents Swiss cantons with their official codes and names in all national languages.
  *
@@ -252,6 +254,10 @@ enum class Canton(
     "Vallese",
     "Valais"
   );
+
+  val codeIso31662 by lazy {
+    "${Country.SWITZERLAND.alpha2Code}_$code"
+  }
 
   companion object {
 
