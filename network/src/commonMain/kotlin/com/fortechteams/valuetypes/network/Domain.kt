@@ -17,6 +17,7 @@ import kotlin.jvm.JvmInline
  *
  * ```kotlin
  * import com.fortechteams.valuetypes.network.Domain
+ * import com.fortechteams.valuetypes.network.Subdomain
  * import io.kotest.matchers.shouldBe
  *
  * fun test() {
@@ -297,7 +298,7 @@ value class Subdomain(private val parts: Triple<List<String>, String, String>) :
    *   dev.parent().toString() shouldBe "www.example.com"
    * }
    * ```
-   * <!--- KNIT example-network-Subdomain-03.kt -->
+   * <!--- KNIT example-network-Subdomain-02.kt -->
    * <!--- TEST lines.isEmpty() -->
    */
   fun parent(): Domain = when {
@@ -334,7 +335,7 @@ value class Subdomain(private val parts: Triple<List<String>, String, String>) :
    *   )
    * }
    * ```
-   * <!--- KNIT example-network-Subdomain-02.kt -->
+   * <!--- KNIT example-network-Subdomain-03.kt -->
    * <!--- TEST lines.isEmpty() -->
    */
   fun getSubdomainHierarchy(): List<Subdomain> {
