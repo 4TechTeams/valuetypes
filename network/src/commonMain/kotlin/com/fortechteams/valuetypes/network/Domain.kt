@@ -1,5 +1,6 @@
 package com.fortechteams.valuetypes.network
 
+import com.fortechteams.valuetypes.network.Domain.Companion.DOMAIN_LABEL_REGEX
 import com.fortechteams.valuetypes.network.exception.InvalidDomainException
 import kotlin.jvm.JvmInline
 
@@ -66,6 +67,9 @@ sealed interface Domain {
   fun toFQDN(): String = "${labels.joinToString(".")}."
 
   companion object {
+
+    val DOMAIN_LABEL_REGEX = Regex("^[a-zA-Z]{2,}$")
+
     /**
      * Parses a string into the appropriate [Domain] type.
      *
@@ -134,7 +138,7 @@ sealed interface Domain {
 @JvmInline
 value class TopLevelDomain(private val value: String) : Domain {
   init {
-    if (!value.matches(Regex("^[a-zA-Z]{2,}$"))) {
+    if (!value.matches(DOMAIN_LABEL_REGEX)) {
       throw InvalidDomainException(value, "TLD must contain only letters and be at least 2 characters long")
     }
   }
@@ -209,7 +213,7 @@ value class ApexDomain(private val parts: Pair<String, String>) : Domain {
       if (!name.isValidLabel()) {
         throw InvalidDomainException(name, "Invalid domain name format")
       }
-      if (!tld.matches(Regex("^[a-zA-Z]{2,}$"))) {
+      if (!tld.matches(DOMAIN_LABEL_REGEX)) {
         throw InvalidDomainException(tld, "Invalid TLD format")
       }
       return name to tld
@@ -373,7 +377,7 @@ value class Subdomain(private val parts: Triple<List<String>, String, String>) :
         throw InvalidDomainException(apexName, "Invalid apex domain name format")
       }
 
-      if (!tld.matches(Regex("^[a-zA-Z]{2,}$"))) {
+      if (!tld.matches(DOMAIN_LABEL_REGEX)) {
         throw InvalidDomainException(tld, "Invalid TLD format")
       }
 
