@@ -46,8 +46,8 @@
                     </a>            </div>
             <div class="library-version">
 <dokka-template-command data="{&quot;@class&quot;:&quot;org.jetbrains.dokka.base.templating.ReplaceVersionsCommand&quot;,&quot;location&quot;:&quot;com.fortechteams.valuetypes.network/-domain/index.html&quot;}"><div class="versions-dropdown">
-  <div class="versions-dropdown-button">0.2.X</div>
-  <div class="versions-dropdown-data"><a href="index.html">0.2.X</a><a href="../../../older/0.1.X/network/com.fortechteams.valuetypes.network/-domain/index.html">0.1.X</a></div>
+  <div class="versions-dropdown-button">0.3.X</div>
+  <div class="versions-dropdown-data"><a href="index.html">0.3.X</a><a href="../../../older/0.2.X/network/com.fortechteams.valuetypes.network/-domain/index.html">0.2.X</a><a href="../../../older/0.1.X/network/com.fortechteams.valuetypes.network/-domain/index.html">0.1.X</a></div>
 </div>
 </dokka-template-command>            </div>
         </div>
@@ -69,7 +69,7 @@
   <div class="breadcrumbs"><a href="../../index.html">network</a><span class="delimiter">/</span><a href="../index.html">com.fortechteams.valuetypes.network</a><span class="delimiter">/</span><span class="current">Domain</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>Domain</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">value </span><span class="token keyword">class </span><a href="index.html">Domain</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/4TechTeams/valuetypes/tree/main/network/src/commonMain/kotlin/com/fortechteams/valuetypes/network/Domain.kt#L6">source</a>)</span></span></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">interface </span><a href="index.html">Domain</a><span class="clearfix"><span class="floating-right">(<a href="https://github.com/4TechTeams/valuetypes/tree/main/network/src/commonMain/kotlin/com/fortechteams/valuetypes/network/Domain.kt#L43">source</a>)</span></span></div><p class="paragraph">Represents a domain name in the Domain Name System (DNS) hierarchy.</p><!-- TEST_NAME NetworkDomainKnitTest --><p class="paragraph">This sealed interface provides a type-safe representation of different domain types:</p><ul><li><p class="paragraph">Top Level Domain (TLD)</p></li><li><p class="paragraph">Apex Domain (also known as root domain)</p></li><li><p class="paragraph">Subdomain</p></li></ul><h2 class="">Example</h2><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">import com.fortechteams.valuetypes.network.Domain<br>import com.fortechteams.valuetypes.network.Subdomain<br>import io.kotest.matchers.shouldBe<br><br>fun test() {<br>  // Parse different types of domains<br>  val tld = Domain.parse("com")<br>  val apex = Domain.parse("example.com")<br>  val subdomain = Domain.parse("www.example.com")<br><br>  // Convert to FQDN (Fully Qualified Domain Name)<br>  tld.toFQDN() shouldBe "com."<br>  apex.toFQDN() shouldBe "example.com."<br>  subdomain.toFQDN() shouldBe "www.example.com."<br><br>  // Access domain parts<br>  (subdomain as Subdomain).apexDomain.toString() shouldBe "example.com"<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><!-- KNIT example-network-Domain-01.kt --><!-- TEST lines.isEmpty() --><span class="kdoc-tag"><h4 class="">Since</h4><p class="paragraph">0.3.0</p></span><h4 class="">Inheritors</h4><div class="table"><div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-top-level-domain/index.html">TopLevelDomain</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-apex-domain/index.html">ApexDomain</a></div></span></div><div></div></div></div><div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><a href="../-subdomain/index.html">Subdomain</a></div></span></div><div></div></div></div></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
@@ -95,17 +95,17 @@
       </div>
       <div data-togglable="PROPERTY">
         <h2 class="">Properties</h2>
-        <div class="table"><a data-name="734081594%2FProperties%2F-1444144345" anchor-label="value" id="734081594%2FProperties%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+        <div class="table"><a data-name="-1078953072%2FProperties%2F-1444144345" anchor-label="labels" id="-1078953072%2FProperties%2F-1444144345" data-filterable-set=":network/commonMain"></a>
           <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="value.html"><span><span>value</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="734081594%2FProperties%2F-1444144345"></span>
+                  <div><a href="labels.html"><span><span>labels</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1078953072%2FProperties%2F-1444144345"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">val </span><a href="value.html">value</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">val </span><a href="labels.html">labels</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">List of labels that make up this domain, from most specific to least specific</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -114,47 +114,17 @@
       </div>
       <div data-togglable="FUNCTION">
         <h2 class="">Functions</h2>
-        <div class="table"><a data-name="660088838%2FFunctions%2F-1444144345" anchor-label="parentDomains" id="660088838%2FFunctions%2F-1444144345" data-filterable-set=":network/commonMain"></a>
+        <div class="table"><a data-name="-498930401%2FFunctions%2F-1444144345" anchor-label="toFQDN" id="-498930401%2FFunctions%2F-1444144345" data-filterable-set=":network/commonMain"></a>
           <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
-                  <div><a href="parent-domains.html"><span>parent</span><wbr><span><span>Domains</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="660088838%2FFunctions%2F-1444144345"></span>
+                  <div><a href="to-f-q-d-n.html"><span>to</span><wbr><span><span>FQDN</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-498930401%2FFunctions%2F-1444144345"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="parent-domains.html"><span class="token function">parentDomains</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="index.html">Domain</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Returns all parent domains, from immediate parent to root. Example: for "www.example.com" returns "example.com", "com"</p></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="-844089021%2FFunctions%2F-1444144345" anchor-label="toString" id="-844089021%2FFunctions%2F-1444144345" data-filterable-set=":network/commonMain"></a>
-          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="to-string.html"><span>to</span><wbr><span><span>String</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-844089021%2FFunctions%2F-1444144345"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="to-string.html"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-<a data-name="1102677111%2FFunctions%2F-1444144345" anchor-label="toZoneString" id="1102677111%2FFunctions%2F-1444144345" data-filterable-set=":network/commonMain"></a>
-          <div class="table-row" data-filterable-current=":network/commonMain" data-filterable-set=":network/commonMain">
-            <div class="main-subrow keyValue ">
-              <div class=""><span class="inline-flex">
-                  <div><a href="to-zone-string.html"><span>to</span><wbr><span>Zone</span><wbr><span><span>String</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1102677111%2FFunctions%2F-1444144345"></span>
-                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                  </span></span></div>
-              <div>
-                <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">fun </span><a href="to-zone-string.html"><span class="token function">toZoneString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Returns the domain name with a trailing dot (canonical form in zone files)</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":network/commonMain"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">fun </span><a href="to-f-q-d-n.html"><span class="token function">toFQDN</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Returns the Fully Qualified Domain Name (FQDN) representation.</p></div></div></div>
                 </div>
               </div>
             </div>
